@@ -2,26 +2,94 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ═══ BASE RESETS ═══ */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "DM Sans", sans-serif;
+  background: #F7F5F0;
+  color: #1a1a1a;
+  overflow-x: hidden;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+/* ═══ SHARED UTILITY CLASSES ═══ */
+@layer components {
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-amber text-charcoal font-bold text-[13.5px] py-3.5 px-7 rounded-[3px] cursor-pointer border-none no-underline transition-all duration-200;
+  }
+  .btn-primary:hover {
+    @apply bg-amber-light -translate-y-px;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 text-white/70 text-[13.5px] font-medium py-3.5 px-[22px] border border-white/20 rounded-[3px] cursor-pointer bg-transparent no-underline transition-all duration-200;
+  }
+  .btn-ghost:hover {
+    @apply border-amber text-amber;
+  }
+
+  .btn-dark {
+    @apply inline-flex items-center gap-2 bg-charcoal text-white font-bold text-[13.5px] py-3.5 px-7 rounded-[3px] cursor-pointer border-none no-underline transition-all duration-200;
+  }
+  .btn-dark:hover {
+    @apply bg-[#111];
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 border-2 border-amber text-amber font-semibold text-[13.5px] py-3 px-6 rounded-[3px] cursor-pointer bg-transparent no-underline transition-all duration-200;
+  }
+  .btn-outline:hover {
+    @apply bg-amber text-charcoal;
+  }
+
+  /* Section helpers */
+  .section-tag {
+    @apply inline-block text-[10px] font-semibold tracking-[3px] uppercase text-amber mb-3.5;
+  }
+
+  .section-title {
+    @apply font-serif text-section-title font-bold leading-[1.1] tracking-tight mb-[18px];
+  }
+  .section-title em {
+    @apply italic text-amber;
+  }
+
+  .content-section {
+    @apply py-20 px-16;
+  }
+  .content-section.dark {
+    @apply bg-charcoal;
+  }
+  .content-section.mid {
+    @apply bg-charcoal-2;
+  }
+  .content-section.light {
+    @apply bg-offwhite;
+  }
+  .content-section.white {
+    @apply bg-white;
+  }
+
+  /* Stat numbers */
+  .stat-num {
+    @apply font-serif text-[42px] font-black text-amber leading-none;
+  }
+  .stat-label {
+    @apply text-[11px] font-semibold tracking-[1.5px] uppercase text-white/40 mt-1;
+  }
+
+  /* Pulse dot */
+  .pulse-dot {
+    @apply w-2 h-2 rounded-full bg-[#e74c3c] inline-block animate-pulseDot;
+  }
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 900px) {
+  .content-section {
+    @apply px-6;
   }
 }

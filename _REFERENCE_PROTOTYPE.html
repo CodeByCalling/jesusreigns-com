@@ -1,0 +1,1621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jesus Reigns Ministries — jesusreigns.com</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═══ DESIGN TOKENS ═══════════════════════════════════ */
+:root {
+  --charcoal:#1e1e1e; --charcoal2:#252525; --charcoal3:#2e2e2e;
+  --amber:#D4A020; --amber-light:#F0C84A; --amber-pale:#fdf6e3;
+  --white:#FFFFFF; --offwhite:#F7F5F0; --gray:#888;
+  --light:#DDDDDD; --text:#1a1a1a; --nav-h:72px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--offwhite);color:var(--text);overflow-x:hidden;}
+
+/* ═══ PAGES (router) ══════════════════════════════════ */
+.page{display:none;padding-top:var(--nav-h);}
+.page.active{display:block;}
+
+/* ═══ NAV ═════════════════════════════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:var(--nav-h);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 40px;
+  background:rgba(14,14,14,0.97);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(212,160,32,0.18);
+}
+.nav-logo{display:flex;align-items:center;gap:11px;text-decoration:none;cursor:pointer;}
+.nav-logo-icon{width:40px;height:40px;background:var(--amber);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.nav-logo-text strong{display:block;font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#fff;line-height:1.1;}
+.nav-logo-text span{display:block;font-size:9px;font-weight:600;letter-spacing:2.5px;color:var(--amber);text-transform:uppercase;}
+.nav-center{display:flex;align-items:center;gap:4px;}
+.nav-link{
+  color:rgba(255,255,255,0.72);text-decoration:none;font-size:13px;font-weight:500;
+  padding:8px 13px;border-radius:3px;cursor:pointer;transition:all .2s;position:relative;
+  background:none;border:none;
+}
+.nav-link:hover,.nav-link.active-link{color:var(--amber-light);background:rgba(212,160,32,0.08);}
+
+/* Dropdowns */
+.nav-dropdown{position:relative;}
+.dropdown-menu{
+  display:none;position:absolute;top:calc(100% + 8px);left:0;
+  background:#111;border:1px solid rgba(212,160,32,0.2);border-radius:4px;
+  min-width:220px;padding:8px 0;
+  box-shadow:0 16px 48px rgba(0,0,0,0.5);
+}
+.nav-dropdown:hover .dropdown-menu{display:block;}
+.dropdown-item{
+  display:block;padding:10px 18px;color:rgba(255,255,255,0.7);
+  font-size:13px;font-weight:500;cursor:pointer;
+  transition:all .15s;text-decoration:none;
+  border:none;background:none;width:100%;text-align:left;
+}
+.dropdown-item:hover{color:var(--amber-light);background:rgba(212,160,32,0.08);padding-left:22px;}
+.dropdown-divider{border:none;border-top:1px solid rgba(255,255,255,0.07);margin:4px 0;}
+.nav-right{display:flex;align-items:center;gap:10px;}
+.btn-new-here{
+  background:var(--amber);color:var(--charcoal);
+  font-weight:700;font-size:13px;padding:9px 20px;
+  border-radius:3px;cursor:pointer;border:none;
+  transition:all .2s;white-space:nowrap;
+}
+.btn-new-here:hover{background:var(--amber-light);}
+.nav-mobile-toggle{display:none;background:none;border:none;color:#fff;font-size:22px;cursor:pointer;padding:4px;}
+.mobile-menu{display:none;}
+
+/* ═══ PAGE HERO (reusable) ════════════════════════════ */
+.page-hero{
+  background:var(--charcoal);padding:72px 64px 60px;
+  position:relative;overflow:hidden;
+}
+.page-hero-bar{position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--amber);}
+.page-hero .eyebrow{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:14px;}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,58px);font-weight:900;color:#fff;line-height:1.05;letter-spacing:-0.5px;margin-bottom:16px;}
+.page-hero h1 em{font-style:italic;color:var(--amber-light);}
+.page-hero p{font-size:16px;color:rgba(255,255,255,0.55);max-width:560px;line-height:1.75;}
+
+/* ═══ SHARED COMPONENTS ═══════════════════════════════ */
+.section-tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:14px;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,46px);font-weight:700;line-height:1.1;letter-spacing:-0.3px;margin-bottom:18px;}
+.section-title em{font-style:italic;color:var(--amber);}
+.content-section{padding:80px 64px;}
+.content-section.dark{background:var(--charcoal);}
+.content-section.mid{background:var(--charcoal2);}
+.content-section.light{background:var(--offwhite);}
+.content-section.white{background:#fff;}
+
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--amber);color:var(--charcoal);font-weight:700;font-size:13.5px;padding:14px 28px;border-radius:3px;cursor:pointer;border:none;text-decoration:none;transition:all .2s;}
+.btn-primary:hover{background:var(--amber-light);transform:translateY(-1px);}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,0.7);font-size:13.5px;font-weight:500;padding:14px 22px;border:1px solid rgba(255,255,255,0.2);border-radius:3px;cursor:pointer;background:none;text-decoration:none;transition:all .2s;}
+.btn-ghost:hover{border-color:var(--amber);color:var(--amber);}
+.btn-dark{display:inline-flex;align-items:center;gap:8px;background:var(--charcoal);color:#fff;font-weight:700;font-size:13.5px;padding:14px 28px;border-radius:3px;cursor:pointer;border:none;text-decoration:none;transition:all .2s;}
+.btn-dark:hover{background:#111;}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--amber);color:var(--amber);font-weight:600;font-size:13.5px;padding:12px 24px;border-radius:3px;cursor:pointer;background:none;text-decoration:none;transition:all .2s;}
+.btn-outline:hover{background:var(--amber);color:var(--charcoal);}
+
+/* Grid helpers */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+
+/* Cards */
+.card-dark{background:var(--charcoal3);padding:32px;transition:transform .2s;}
+.card-dark:hover{transform:translateY(-2px);}
+.card-amber-top{border-top:3px solid var(--amber);}
+.card-amber-left{border-left:4px solid var(--amber);}
+.card-light{background:#fff;padding:32px;border-bottom:3px solid transparent;transition:all .3s;}
+.card-light:hover{border-bottom-color:var(--amber);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.08);}
+
+/* Form elements */
+.form-group{margin-bottom:20px;}
+.form-label{display:block;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--amber);margin-bottom:8px;}
+.form-input,.form-select,.form-textarea{
+  width:100%;padding:12px 16px;
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);
+  border-radius:3px;color:#fff;font-family:'DM Sans',sans-serif;font-size:14px;
+  transition:border-color .2s;
+}
+.form-input:focus,.form-select:focus,.form-textarea:focus{outline:none;border-color:var(--amber);}
+.form-input::placeholder,.form-textarea::placeholder{color:rgba(255,255,255,0.3);}
+.form-select option{background:#222;color:#fff;}
+.form-textarea{resize:vertical;min-height:120px;}
+.form-light .form-input,.form-light .form-select,.form-light .form-textarea{
+  background:#fff;border:1px solid #ddd;color:var(--text);
+}
+.form-light .form-input::placeholder,.form-light .form-textarea::placeholder{color:#aaa;}
+.form-light .form-select option{background:#fff;color:var(--text);}
+
+/* Stats */
+.stat-num{font-family:'Playfair Display',serif;font-size:42px;font-weight:900;color:var(--amber);line-height:1;}
+.stat-label{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-top:4px;}
+
+/* Prototype badge */
+.prototype-badge{position:fixed;bottom:20px;right:20px;z-index:999;background:rgba(14,14,14,0.92);border:1px solid rgba(212,160,32,0.4);padding:8px 16px;border-radius:4px;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber);backdrop-filter:blur(8px);}
+
+/* Page transitions */
+.page{animation:fadeIn .3s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* Modal */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:500;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
+.modal-overlay.open{display:flex;}
+.modal-box{background:#1a1a1a;border:1px solid rgba(212,160,32,0.2);border-radius:6px;padding:40px;max-width:520px;width:90%;max-height:90vh;overflow-y:auto;}
+.modal-box h2{font-family:'Playfair Display',serif;font-size:26px;color:#fff;margin-bottom:6px;}
+.modal-box .modal-sub{font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:28px;}
+.modal-close{position:absolute;top:16px;right:20px;background:none;border:none;color:rgba(255,255,255,0.5);font-size:24px;cursor:pointer;}
+.modal-box-wrap{position:relative;}
+
+/* Amber pulse dot */
+.pulse-dot{width:8px;height:8px;border-radius:50%;background:#e74c3c;display:inline-block;animation:pdot 1.5s infinite;}
+@keyframes pdot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.7);}}
+
+/* ═══════════════════════════════════════════════════ */
+/*  PAGE: HOME                                         */
+/* ═══════════════════════════════════════════════════ */
+.hero{min-height:100vh;background:var(--charcoal);display:flex;align-items:center;position:relative;overflow:hidden;padding-top:var(--nav-h);}
+.hero-bg-word{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Playfair Display',serif;font-size:26vw;font-weight:900;color:rgba(255,255,255,0.022);white-space:nowrap;pointer-events:none;user-select:none;}
+.hero-bar{position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--amber);}
+.hero-content{position:relative;z-index:2;padding:0 72px;max-width:800px;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;background:rgba(212,160,32,0.1);border:1px solid rgba(212,160,32,0.25);padding:6px 14px;border-radius:2px;margin-bottom:26px;}
+.hero-eyebrow span{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--amber);}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(44px,6.5vw,84px);font-weight:900;color:#fff;line-height:1.03;letter-spacing:-1px;margin-bottom:8px;}
+.hero h1 em{font-style:italic;color:var(--amber-light);}
+.hero-sub{font-size:17px;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.8;margin:20px 0 38px;max-width:500px;}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+.hero-strip{position:absolute;bottom:0;left:0;right:0;background:rgba(212,160,32,0.07);border-top:1px solid rgba(212,160,32,0.18);padding:18px 72px;display:flex;align-items:center;gap:40px;flex-wrap:wrap;}
+.strip-label{font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--amber);white-space:nowrap;}
+.strip-times{display:flex;gap:28px;flex-wrap:wrap;}
+.strip-time strong{font-size:15px;font-weight:600;color:#fff;display:block;}
+.strip-time small{font-size:11px;color:rgba(255,255,255,0.38);}
+.strip-live{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,0.5);}
+
+/* Stats bar */
+.stats-bar{background:var(--charcoal2);display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid rgba(212,160,32,0.12);}
+.stat-box{text-align:center;padding:32px 20px;border-right:1px solid rgba(255,255,255,0.05);}
+.stat-box:last-child{border-right:none;}
+
+/* About strip on home */
+.home-about{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.home-about-left{background:var(--offwhite);padding:80px 64px;}
+.home-about-right{background:var(--charcoal);padding:80px 64px;display:flex;flex-direction:column;justify-content:center;}
+.wisdom-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:28px;}
+.wisdom-pill{display:flex;align-items:center;gap:10px;background:var(--charcoal);padding:12px 14px;border-radius:2px;}
+.wisdom-pill span:last-child{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--amber);}
+
+/* Events preview */
+.events-preview{background:var(--charcoal2);padding:80px 64px;}
+.events-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:40px;}
+.event-mini{background:var(--charcoal3);padding:24px;border-top:3px solid transparent;transition:all .3s;cursor:pointer;}
+.event-mini:hover{border-top-color:var(--amber);transform:translateY(-2px);}
+.event-mini .date-badge{font-size:10px;font-weight:600;letter-spacing:1.5px;color:var(--amber);text-transform:uppercase;margin-bottom:10px;}
+.event-mini h4{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:8px;}
+.event-mini p{font-size:12px;color:rgba(255,255,255,0.4);}
+
+/* Sermons preview */
+.sermons-preview{background:var(--offwhite);padding:80px 64px;}
+.sermon-grid-home{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:2px;margin-top:40px;}
+.sermon-card-home{background:var(--charcoal);padding:30px;cursor:pointer;transition:transform .2s;}
+.sermon-card-home:hover{transform:translateY(-3px);}
+.sermon-card-home.featured{padding:40px;}
+.sermon-series{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--amber);color:var(--charcoal);padding:4px 10px;display:inline-block;margin-bottom:16px;}
+.sermon-date{font-size:11px;color:rgba(255,255,255,0.35);margin-bottom:8px;}
+.sermon-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:8px;}
+.sermon-card-home.featured .sermon-title{font-size:24px;}
+.sermon-speaker{font-size:12px;color:rgba(255,255,255,0.4);}
+.sermon-play{display:flex;align-items:center;gap:6px;margin-top:16px;color:var(--amber);font-size:13px;font-weight:600;}
+
+/* Social & Reviews */
+.social-section{background:var(--charcoal);padding:80px 64px;}
+.social-platforms{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;margin:40px 0;}
+.social-card{background:var(--charcoal3);padding:28px 20px;text-align:center;border-top:3px solid transparent;transition:all .3s;cursor:pointer;}
+.social-card:hover{transform:translateY(-3px);}
+.social-card.fb:hover{border-top-color:#1877F2;}
+.social-card.yt:hover{border-top-color:#FF0000;}
+.social-card.ig:hover{border-top-color:#E1306C;}
+.social-card.twitter:hover{border-top-color:#1DA1F2;}
+.social-card.tiktok:hover{border-top-color:#69C9D0;}
+.social-icon{font-size:32px;margin-bottom:12px;}
+.social-name{font-size:13px;font-weight:600;color:#fff;margin-bottom:4px;}
+.social-handle{font-size:11px;color:rgba(255,255,255,0.35);}
+.reviews-strip{margin-top:48px;}
+.reviews-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;}
+.reviews-header h3{font-family:'Playfair Display',serif;font-size:22px;color:#fff;}
+.google-rating{display:flex;align-items:center;gap:10px;}
+.rating-num{font-size:36px;font-weight:700;color:var(--amber);font-family:'Playfair Display',serif;}
+.stars{color:#FFD700;font-size:18px;}
+.rating-count{font-size:12px;color:rgba(255,255,255,0.35);}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.review-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:24px;border-radius:4px;}
+.review-stars{color:#FFD700;font-size:13px;margin-bottom:10px;}
+.review-text{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.7;margin-bottom:14px;font-style:italic;}
+.reviewer{font-size:12px;font-weight:600;color:rgba(255,255,255,0.4);}
+
+/* ═══════════════════════════════════════════════════ */
+/*  PAGE: ABOUT                                        */
+/* ═══════════════════════════════════════════════════ */
+.leadership-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:40px;}
+.leader-card{background:var(--charcoal3);padding:32px;text-align:center;}
+.leader-avatar{width:80px;height:80px;border-radius:50%;background:rgba(212,160,32,0.15);border:2px solid var(--amber);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 16px;}
+.leader-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:4px;}
+.leader-title{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber);}
+.timeline-row{display:flex;gap:24px;margin-bottom:24px;align-items:flex-start;}
+.timeline-year{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--amber);min-width:80px;}
+.timeline-content h4{font-size:15px;font-weight:600;color:#fff;margin-bottom:4px;}
+.timeline-content p{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.6;}
+.values-table{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:40px;}
+.value-cell{background:var(--charcoal3);padding:28px;border-left:4px solid var(--amber);}
+.value-letter{font-family:'Playfair Display',serif;font-size:44px;font-weight:900;color:var(--amber);line-height:1;margin-bottom:6px;}
+.value-word{font-size:14px;font-weight:700;color:#fff;letter-spacing:0.5px;margin-bottom:4px;}
+.value-desc{font-size:12px;color:rgba(255,255,255,0.45);line-height:1.6;}
+
+/* ═══════════════════════════════════════════════════ */
+/*  PAGE: I'M NEW HERE                                 */
+/* ═══════════════════════════════════════════════════ */
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:40px;}
+.step-card{background:var(--charcoal3);padding:32px;position:relative;}
+.step-num{font-family:'Playfair Display',serif;font-size:56px;font-weight:900;color:rgba(212,160,32,0.2);line-height:1;margin-bottom:12px;}
+.step-title{font-size:16px;font-weight:700;color:#fff;margin-bottom:10px;}
+.step-desc{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;}
+.faq-item{border-bottom:1px solid rgba(255,255,255,0.08);padding:20px 0;}
+.faq-q{font-size:15px;font-weight:600;color:#fff;margin-bottom:8px;display:flex;align-items:center;gap:10px;}
+.faq-q::before{content:'Q';font-size:10px;font-weight:700;background:var(--amber);color:var(--charcoal);padding:3px 7px;border-radius:2px;}
+.faq-a{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;padding-left:30px;}
+
+/* ═══════════════════════════════════════════════════ */
+/*  PAGE: EVENTS                                       */
+/* ═══════════════════════════════════════════════════ */
+.event-filters{display:flex;gap:8px;flex-wrap:wrap;margin:32px 0;}
+.filter-btn{padding:8px 18px;border-radius:20px;border:1px solid rgba(212,160,32,0.3);background:none;color:rgba(255,255,255,0.6);font-size:12px;font-weight:600;letter-spacing:.5px;cursor:pointer;transition:all .2s;}
+.filter-btn:hover,.filter-btn.active{background:var(--amber);border-color:var(--amber);color:var(--charcoal);}
+.events-cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:24px;}
+.event-card{background:var(--charcoal2);border-radius:3px;overflow:hidden;cursor:pointer;transition:all .3s;}
+.event-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,0.3);}
+.event-card-banner{height:140px;display:flex;align-items:center;justify-content:center;font-size:56px;position:relative;}
+.event-card-type{position:absolute;top:12px;left:12px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--amber);color:var(--charcoal);padding:4px 10px;}
+.event-card-body{padding:24px;}
+.event-card-date{font-size:11px;font-weight:600;letter-spacing:1px;color:var(--amber);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.event-card-title{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:8px;}
+.event-card-location{font-size:12px;color:rgba(255,255,255,0.35);margin-bottom:16px;display:flex;align-items:center;gap:6px;}
+.event-card-actions{display:flex;gap:8px;}
+.btn-sm-amber{background:var(--amber);color:var(--charcoal);font-weight:700;font-size:12px;padding:8px 16px;border-radius:2px;cursor:pointer;border:none;transition:all .2s;}
+.btn-sm-amber:hover{background:var(--amber-light);}
+.btn-sm-ghost{border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.6);font-size:12px;padding:8px 16px;border-radius:2px;cursor:pointer;background:none;transition:all .2s;}
+.btn-sm-ghost:hover{border-color:var(--amber);color:var(--amber);}
+
+/* Google Calendar embed area */
+.calendar-section{background:var(--charcoal3);padding:48px 64px;}
+.calendar-embed{background:rgba(255,255,255,0.04);border:1px solid rgba(212,160,32,0.15);border-radius:4px;min-height:500px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;margin-top:32px;}
+.calendar-embed-icon{font-size:56px;}
+.calendar-embed p{font-size:14px;color:rgba(255,255,255,0.4);text-align:center;max-width:320px;line-height:1.7;}
+
+/* ═══════════════════════════════════════════════════ */
+/*  PAGE: SERMONS                                      */
+/* ═══════════════════════════════════════════════════ */
+.sermons-search{display:flex;gap:12px;margin:32px 0;}
+.sermon-archive{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.sermon-archive-card{background:var(--charcoal2);border-radius:3px;overflow:hidden;cursor:pointer;transition:all .3s;}
+.sermon-archive-card:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,0.3);}
+.sermon-thumb{height:120px;background:linear-gradient(135deg,#2a2a2a,#1a1a1a);display:flex;align-items:center;justify-content:center;font-size:36px;position:relative;}
+.sermon-thumb-play{position:absolute;bottom:12px;right:12px;width:32px;height:32px;background:var(--amber);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;}
+.sermon-archive-body{padding:20px;}
+.sermon-archive-series{font-size:9px;font-weight:700;letter-spacing:2px;color:var(--amber);text-transform:uppercase;margin-bottom:6px;}
+.sermon-archive-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:6px;}
+.sermon-archive-meta{font-size:11px;color:rgba(255,255,255,0.3);}
+
+/* ═══════════════════════════════════════════════════ */
+/*  PAGE: LIVE STREAM                                   */
+/* ═══════════════════════════════════════════════════ */
+.livestream-main{background:var(--charcoal);padding:48px 64px;}
+.embed-container{background:#000;border-radius:4px;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;max-width:900px;margin:32px auto;border:1px solid rgba(212,160,32,0.15);}
+.embed-container .placeholder{text-align:center;}
+.embed-container .placeholder span{font-size:64px;display:block;margin-bottom:16px;}
+.embed-container .placeholder p{font-size:13px;color:rgba(255,255,255,0.4);}
+.stream-schedule{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:900px;margin:0 auto;}
+
+/* ═══════════════════════════════════════════════════ */
+/*  PAGE: PRAYER WALL                                  */
+/* ═══════════════════════════════════════════════════ */
+.prayer-layout{display:grid;grid-template-columns:1fr 1.2fr;gap:48px;align-items:flex-start;}
+.prayer-cards{display:flex;flex-direction:column;gap:14px;max-height:600px;overflow-y:auto;padding-right:8px;}
+.prayer-card{background:var(--charcoal3);padding:20px 24px;border-left:4px solid var(--amber);border-radius:2px;}
+.prayer-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.prayer-card-name{font-size:13px;font-weight:600;color:var(--amber);}
+.prayer-card-time{font-size:11px;color:rgba(255,255,255,0.25);}
+.prayer-card-text{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.7;}
+.prayer-card-prayed{font-size:11px;color:rgba(255,255,255,0.3);margin-top:10px;display:flex;align-items:center;gap:6px;}
+
+/* ═══════════════════════════════════════════════════ */
+/*  PAGE: DNG PROGRAM                                  */
+/* ═══════════════════════════════════════════════════ */
+.dng-path{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:40px 0;}
+.dng-stage{background:var(--charcoal3);padding:36px;text-align:center;position:relative;}
+.dng-stage-num{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:rgba(212,160,32,0.15);margin-bottom:8px;}
+.dng-stage-icon{font-size:36px;margin-bottom:16px;}
+.dng-stage-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:10px;}
+.dng-stage-desc{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;}
+.dng-stage-badge{margin-top:16px;display:inline-block;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber);border:1px solid rgba(212,160,32,0.3);padding:5px 12px;}
+.dng-arrow{display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--amber);padding-top:80px;}
+
+/* ═══════════════════════════════════════════════════ */
+/*  PAGE: GIVE                                         */
+/* ═══════════════════════════════════════════════════ */
+.give-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:flex-start;}
+.amount-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0;}
+.amount-btn{border:1px solid rgba(212,160,32,0.3);background:rgba(212,160,32,0.06);color:var(--amber-light);font-size:18px;font-weight:700;font-family:'Playfair Display',serif;padding:18px;border-radius:3px;cursor:pointer;transition:all .2s;text-align:center;}
+.amount-btn:hover,.amount-btn.selected{background:var(--amber);color:var(--charcoal);border-color:var(--amber);}
+.give-freq{display:flex;gap:8px;margin-bottom:20px;}
+.freq-btn{flex:1;padding:10px;border:1px solid rgba(255,255,255,0.15);background:none;color:rgba(255,255,255,0.5);font-size:13px;font-weight:600;border-radius:3px;cursor:pointer;transition:all .2s;}
+.freq-btn.active{border-color:var(--amber);color:var(--amber);}
+.give-why{background:var(--charcoal3);padding:32px;border-left:4px solid var(--amber);}
+.give-why h3{font-family:'Playfair Display',serif;font-size:22px;color:#fff;margin-bottom:16px;}
+.give-why p{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.8;}
+.give-stats{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:24px;}
+.give-stat{background:var(--charcoal);padding:20px;}
+.give-stat .n{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--amber);}
+.give-stat .l{font-size:11px;color:rgba(255,255,255,0.35);margin-top:4px;}
+
+/* ═══════════════════════════════════════════════════ */
+/*  PAGE: TESTIMONY WALL                               */
+/* ═══════════════════════════════════════════════════ */
+.testimony-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;}
+.testimony-card{background:var(--charcoal3);padding:28px;border-radius:3px;border-top:3px solid var(--amber);}
+.testimony-quote{font-size:36px;color:rgba(212,160,32,0.3);font-family:'Playfair Display',serif;line-height:1;margin-bottom:12px;}
+.testimony-text{font-size:14px;color:rgba(255,255,255,0.6);line-height:1.8;font-style:italic;margin-bottom:20px;}
+.testimony-author{font-size:12px;font-weight:600;color:var(--amber);}
+.testimony-location{font-size:11px;color:rgba(255,255,255,0.25);}
+
+/* ═══════════════════════════════════════════════════ */
+/*  PAGE: CONTACT                                      */
+/* ═══════════════════════════════════════════════════ */
+.contact-layout{display:grid;grid-template-columns:1fr 1.3fr;gap:64px;}
+.contact-detail{display:flex;gap:16px;margin-bottom:24px;align-items:flex-start;}
+.contact-icon{width:42px;height:42px;background:rgba(212,160,32,0.1);border:1px solid rgba(212,160,32,0.2);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.contact-detail-text strong{display:block;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber);margin-bottom:4px;}
+.contact-detail-text p{font-size:14px;color:rgba(255,255,255,0.6);line-height:1.6;}
+.map-box{background:var(--charcoal3);border-radius:4px;min-height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;border:1px solid rgba(212,160,32,0.12);margin-top:24px;}
+.map-box span{font-size:40px;}
+.map-box p{font-size:12px;color:rgba(255,255,255,0.35);text-align:center;}
+.map-box a{background:var(--amber);color:var(--charcoal);font-weight:700;font-size:12px;padding:9px 20px;text-decoration:none;border-radius:2px;}
+
+/* ═══════════════════════════════════════════════════ */
+/*  PAGE: BLOG                                         */
+/* ═══════════════════════════════════════════════════ */
+.blog-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:2px;margin-top:40px;}
+.blog-card{background:var(--charcoal3);padding:32px;cursor:pointer;transition:all .2s;}
+.blog-card:hover{transform:translateY(-2px);}
+.blog-category{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:rgba(212,160,32,0.15);color:var(--amber);padding:4px 10px;border-radius:2px;display:inline-block;margin-bottom:14px;}
+.blog-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:10px;}
+.blog-card.featured .blog-title{font-size:26px;}
+.blog-excerpt{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;margin-bottom:16px;}
+.blog-meta{font-size:11px;color:rgba(255,255,255,0.25);}
+
+/* ═══════════════════════════════════════════════════ */
+/*  PAGE: RESOURCES                                    */
+/* ═══════════════════════════════════════════════════ */
+.resources-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;}
+.resource-card{background:var(--charcoal3);padding:28px;display:flex;flex-direction:column;gap:12px;border:1px solid rgba(255,255,255,0.06);border-radius:3px;transition:all .2s;}
+.resource-card:hover{border-color:rgba(212,160,32,0.3);}
+.resource-icon{font-size:32px;}
+.resource-type{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amber);}
+.resource-title{font-size:15px;font-weight:600;color:#fff;line-height:1.3;}
+.resource-desc{font-size:12px;color:rgba(255,255,255,0.35);line-height:1.6;flex:1;}
+.resource-download{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--amber);cursor:pointer;border:none;background:none;padding:0;}
+
+/* ═══════════════════════════════════════════════════ */
+/*  PAGE: MEMBERS PORTAL                               */
+/* ═══════════════════════════════════════════════════ */
+.portal-gate{max-width:440px;margin:0 auto;text-align:center;padding:80px 24px;}
+.portal-icon{font-size:56px;margin-bottom:24px;}
+.portal-gate h2{font-family:'Playfair Display',serif;font-size:32px;color:#fff;margin-bottom:12px;}
+.portal-gate p{font-size:14px;color:rgba(255,255,255,0.45);line-height:1.7;margin-bottom:32px;}
+.portal-form{text-align:left;}
+
+/* ═══════════════════════════════════════════════════ */
+/*  PAGE: CHURCH DIRECTORY                             */
+/* ═══════════════════════════════════════════════════ */
+.directory-search{display:flex;gap:12px;margin:32px 0;flex-wrap:wrap;}
+.region-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:32px;}
+.region-tab{padding:8px 16px;border:1px solid rgba(212,160,32,0.25);background:none;color:rgba(255,255,255,0.5);font-size:12px;font-weight:600;border-radius:20px;cursor:pointer;transition:all .2s;}
+.region-tab:hover,.region-tab.active{background:var(--amber);border-color:var(--amber);color:var(--charcoal);}
+.churches-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.church-card{background:var(--charcoal3);padding:24px;}
+.church-name{font-size:15px;font-weight:700;color:#fff;margin-bottom:4px;}
+.church-pastor{font-size:12px;color:var(--amber);margin-bottom:8px;}
+.church-location{font-size:12px;color:rgba(255,255,255,0.35);display:flex;align-items:center;gap:6px;}
+.church-type{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;border-radius:2px;background:rgba(212,160,32,0.1);color:var(--amber);display:inline-block;margin-top:10px;}
+
+/* ═══════════════════════════════════════════════════ */
+/*  PAGE: PASTORAL SERVICES                            */
+/* ═══════════════════════════════════════════════════ */
+.pastoral-grid-page{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;}
+.pastoral-page-card{background:#fff;padding:36px;border-bottom:4px solid transparent;transition:all .3s;cursor:pointer;}
+.pastoral-page-card:hover{border-bottom-color:var(--amber);transform:translateY(-2px);}
+.pastoral-emoji{font-size:40px;margin-bottom:18px;display:block;}
+.pastoral-title{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:var(--charcoal);margin-bottom:10px;}
+.pastoral-desc{font-size:14px;color:#666;line-height:1.7;margin-bottom:20px;}
+.pastoral-link{font-size:13px;font-weight:600;color:var(--amber);display:flex;align-items:center;gap:6px;background:none;border:none;cursor:pointer;padding:0;}
+
+/* ═══════════════════════════════════════════════════ */
+/*  PAGE: INTERNATIONAL                                */
+/* ═══════════════════════════════════════════════════ */
+.intl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:40px;}
+.intl-card{background:var(--charcoal3);padding:32px;border-top:4px solid;transition:all .3s;cursor:pointer;}
+.intl-card:hover{transform:translateY(-3px);}
+.intl-flag{font-size:36px;margin-bottom:14px;}
+.intl-name{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:#fff;margin-bottom:6px;}
+.intl-location{font-size:12px;color:rgba(255,255,255,0.35);margin-bottom:14px;}
+.intl-desc{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;margin-bottom:18px;}
+.intl-link{font-size:12px;font-weight:600;color:var(--amber);display:flex;align-items:center;gap:5px;}
+
+/* ═══════════════════════════════════════════════════ */
+/*  PAGE: ACADEMY & COLLEGE                            */
+/* ═══════════════════════════════════════════════════ */
+.school-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:40px;}
+.school-card{padding:48px;display:flex;flex-direction:column;gap:16px;}
+.school-card.academy{background:var(--charcoal2);}
+.school-card.college{background:var(--charcoal3);}
+.school-card h2{font-family:'Playfair Display',serif;font-size:28px;color:#fff;}
+.school-card p{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.8;}
+
+/* ═══════════════════════════════════════════════════ */
+/*  FOOTER                                             */
+/* ═══════════════════════════════════════════════════ */
+footer{background:#0d0d0d;padding:60px 64px 36px;}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,0.05);}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,0.35);line-height:1.8;max-width:240px;margin:16px 0;}
+.footer-social{display:flex;gap:8px;}
+.footer-social a{width:34px;height:34px;background:rgba(255,255,255,0.06);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:13px;text-decoration:none;color:rgba(255,255,255,0.5);transition:all .2s;cursor:pointer;}
+.footer-social a:hover{background:var(--amber);color:var(--charcoal);}
+.footer-col h4{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:16px;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.footer-col li{font-size:13px;color:rgba(255,255,255,0.38);cursor:pointer;transition:color .2s;}
+.footer-col li:hover{color:var(--amber-light);}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:28px;flex-wrap:wrap;gap:12px;}
+.footer-bottom p,.footer-bottom span{font-size:11px;color:rgba(255,255,255,0.2);}
+
+/* ═══════════════════════════════════════════════════ */
+/*  RESPONSIVE                                         */
+/* ═══════════════════════════════════════════════════ */
+@media(max-width:900px){
+  nav{padding:0 20px;}
+  .nav-center{display:none;}
+  .nav-mobile-toggle{display:block;}
+  .mobile-menu{display:none;position:fixed;inset:0;top:var(--nav-h);background:#0d0d0d;z-index:150;overflow-y:auto;padding:20px;}
+  .mobile-menu.open{display:block;}
+  .mobile-nav-link{display:block;padding:14px 20px;color:rgba(255,255,255,0.7);font-size:15px;font-weight:500;border-bottom:1px solid rgba(255,255,255,0.06);cursor:pointer;}
+  .mobile-nav-link:hover{color:var(--amber);}
+  .mobile-section-label{padding:14px 20px 6px;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(212,160,32,0.5);}
+  .content-section,.hero-content,.page-hero{padding-left:24px;padding-right:24px;}
+  .grid-2,.grid-3,.grid-4,.home-about,.give-layout,.contact-layout,.prayer-layout,.leadership-grid,.events-cards-grid,.sermon-archive,.dng-path,.values-table,.social-platforms,.reviews-grid,.testimony-grid,.blog-grid,.resources-grid,.pastoral-grid-page,.intl-grid,.churches-grid,.school-grid,.stats-bar,.footer-top,.steps-grid,.hero-strip,.sermon-grid-home,.events-strip{grid-template-columns:1fr;}
+  .home-about-left,.home-about-right,.footer-top,.calendar-section{padding:40px 24px;}
+  footer{padding:40px 24px 24px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ═══════════════════════════════════ -->
+<nav id="main-nav">
+  <div class="nav-logo" onclick="showPage('home')">
+    <div class="nav-logo-icon">✝</div>
+    <div class="nav-logo-text">
+      <strong>Jesus Reigns</strong>
+      <span>Ministries</span>
+    </div>
+  </div>
+
+  <div class="nav-center">
+    <button class="nav-link" onclick="showPage('about')">About</button>
+    <button class="nav-link" onclick="showPage('services')">Services</button>
+    <button class="nav-link" onclick="showPage('events')">Events</button>
+    <button class="nav-link" onclick="showPage('sermons')">Sermons</button>
+
+    <!-- Connect dropdown -->
+    <div class="nav-dropdown">
+      <button class="nav-link">Connect ▾</button>
+      <div class="dropdown-menu">
+        <button class="dropdown-item" onclick="showPage('new-here')">👋 I'm New Here</button>
+        <button class="dropdown-item" onclick="showPage('dng')">📖 DNG Program</button>
+        <button class="dropdown-item" onclick="showPage('prayer-wall')">🙏 Prayer Wall</button>
+        <button class="dropdown-item" onclick="showPage('testimony')">✨ Testimony Wall</button>
+        <hr class="dropdown-divider">
+        <button class="dropdown-item" onclick="showPage('pastoral')">💍 Pastoral Services</button>
+      </div>
+    </div>
+
+    <!-- More dropdown -->
+    <div class="nav-dropdown">
+      <button class="nav-link">More ▾</button>
+      <div class="dropdown-menu">
+        <button class="dropdown-item" onclick="showPage('livestream')">📺 Live Stream</button>
+        <button class="dropdown-item" onclick="showPage('blog')">📝 Blog & Devotionals</button>
+        <button class="dropdown-item" onclick="showPage('resources')">📦 Resources</button>
+        <hr class="dropdown-divider">
+        <button class="dropdown-item" onclick="showPage('directory')">⛪ Church Directory</button>
+        <button class="dropdown-item" onclick="showPage('international')">🌍 International</button>
+        <button class="dropdown-item" onclick="showPage('academy')">🎓 Academy & College</button>
+        <hr class="dropdown-divider">
+        <button class="dropdown-item" onclick="showPage('members')">🔐 Members Portal</button>
+      </div>
+    </div>
+
+    <button class="nav-link" onclick="showPage('contact')">Visit Us</button>
+  </div>
+
+  <div class="nav-right">
+    <button class="nav-link" onclick="showPage('give')" style="color:var(--amber);">Give</button>
+    <button class="btn-new-here" onclick="showPage('new-here')">I'm New Here</button>
+    <button class="nav-mobile-toggle" onclick="toggleMobile()">☰</button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-section-label">Main</div>
+  <div class="mobile-nav-link" onclick="showPage('home');closeMobile()">🏠 Home</div>
+  <div class="mobile-nav-link" onclick="showPage('about');closeMobile()">ℹ️ About JRM</div>
+  <div class="mobile-nav-link" onclick="showPage('new-here');closeMobile()">👋 I'm New Here</div>
+  <div class="mobile-nav-link" onclick="showPage('services');closeMobile()">📅 Services</div>
+  <div class="mobile-nav-link" onclick="showPage('livestream');closeMobile()">📺 Live Stream</div>
+  <div class="mobile-nav-link" onclick="showPage('events');closeMobile()">🗓️ Events</div>
+  <div class="mobile-nav-link" onclick="showPage('sermons');closeMobile()">🎙️ Sermons</div>
+  <div class="mobile-section-label">Connect</div>
+  <div class="mobile-nav-link" onclick="showPage('prayer-wall');closeMobile()">🙏 Prayer Wall</div>
+  <div class="mobile-nav-link" onclick="showPage('dng');closeMobile()">📖 DNG Program</div>
+  <div class="mobile-nav-link" onclick="showPage('testimony');closeMobile()">✨ Testimony Wall</div>
+  <div class="mobile-nav-link" onclick="showPage('pastoral');closeMobile()">💍 Pastoral Services</div>
+  <div class="mobile-section-label">Resources</div>
+  <div class="mobile-nav-link" onclick="showPage('blog');closeMobile()">📝 Blog & Devotionals</div>
+  <div class="mobile-nav-link" onclick="showPage('resources');closeMobile()">📦 Downloads</div>
+  <div class="mobile-section-label">Network</div>
+  <div class="mobile-nav-link" onclick="showPage('directory');closeMobile()">⛪ Church Directory</div>
+  <div class="mobile-nav-link" onclick="showPage('international');closeMobile()">🌍 International</div>
+  <div class="mobile-nav-link" onclick="showPage('academy');closeMobile()">🎓 Academy & College</div>
+  <div class="mobile-section-label">Account</div>
+  <div class="mobile-nav-link" onclick="showPage('give');closeMobile()" style="color:var(--amber);font-weight:700;">💛 Give</div>
+  <div class="mobile-nav-link" onclick="showPage('members');closeMobile()">🔐 Members Portal</div>
+  <div class="mobile-nav-link" onclick="showPage('contact');closeMobile()">📍 Contact & Visit</div>
+</div>
+
+<!-- ═══ PAGE: HOME ════════════════════════════════════ -->
+<div class="page active" id="page-home">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bar"></div>
+    <div class="hero-bg-word">REIGNS</div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="pulse-dot"></span>
+        <span>Live Every Sunday · 8:00 AM</span>
+      </div>
+      <h1>Where<br><em>Jesus Reigns,</em><br>Nations Transform.</h1>
+      <p class="hero-sub">A global ministry rooted in Manila since 1986. Winning souls, making disciples, and reaching nations — one church at a time.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="showPage('livestream')">▶ Watch Live</button>
+        <button class="btn-ghost" onclick="showPage('new-here')">I'm New Here →</button>
+        <button class="btn-ghost" onclick="showPage('events')">Upcoming Events →</button>
+      </div>
+    </div>
+    <div class="hero-strip">
+      <span class="strip-label">Sunday Services</span>
+      <div class="strip-times">
+        <div class="strip-time"><strong>8:00 AM</strong><small>+ Live Stream</small></div>
+        <div class="strip-time"><strong>10:30 AM</strong><small>Filipino Service</small></div>
+        <div class="strip-time"><strong>1:00 PM</strong><small>Afternoon Service</small></div>
+      </div>
+      <div class="strip-live"><span class="pulse-dot"></span> YouTube & Facebook Live</div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div class="stats-bar">
+    <div class="stat-box"><div class="stat-num">40</div><div class="stat-label">Years of Ministry</div></div>
+    <div class="stat-box"><div class="stat-num">85</div><div class="stat-label">Provincial Churches</div></div>
+    <div class="stat-box"><div class="stat-num">55</div><div class="stat-label">Ongoing Missions</div></div>
+    <div class="stat-box"><div class="stat-num">6+</div><div class="stat-label">Global Regions</div></div>
+  </div>
+
+  <!-- About strip -->
+  <div class="home-about">
+    <div class="home-about-left">
+      <span class="section-tag">Our Story</span>
+      <h2 class="section-title" style="color:var(--charcoal);">40 Years of <em>Faithful</em> Ministry</h2>
+      <p style="font-size:15px;color:#555;line-height:1.8;margin-bottom:16px;">Founded in 1986 in Malate, Manila by Bishop Vincent and Dr. Ligaya Javier, Jesus Reigns Ministries began with one vision: a model church where Jesus truly reigns.</p>
+      <p style="font-size:15px;color:#555;line-height:1.8;margin-bottom:28px;">Today, JRM spans the Philippines and the world — united by one mission, one Lord.</p>
+      <button class="btn-dark" onclick="showPage('about')">Our Full Story →</button>
+      <div class="wisdom-grid">
+        <div class="wisdom-pill"><span>🙏</span><span>Worship</span></div>
+        <div class="wisdom-pill"><span>⚔️</span><span>Intercession</span></div>
+        <div class="wisdom-pill"><span>🤝</span><span>Service</span></div>
+        <div class="wisdom-pill"><span>📖</span><span>Discipleship</span></div>
+        <div class="wisdom-pill"><span>❤️</span><span>One Heart</span></div>
+        <div class="wisdom-pill"><span>🌍</span><span>Mission</span></div>
+      </div>
+    </div>
+    <div class="home-about-right">
+      <span class="section-tag">Bishop Vincent & Dr. Ligaya Javier</span>
+      <h2 class="section-title" style="color:#fff;font-size:32px;">Founders & Senior Pastors</h2>
+      <p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.8;">Under their visionary leadership, JRM has grown from a small Manila fellowship into a global network of churches spanning six continents — all driven by the call to win souls and make disciples.</p>
+      <div style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap;">
+        <div style="background:rgba(212,160,32,0.1);border:1px solid rgba(212,160,32,0.2);padding:16px 20px;flex:1;min-width:120px;text-align:center;">
+          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--amber);">1986</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:1px;margin-top:4px;">Founded</div>
+        </div>
+        <div style="background:rgba(212,160,32,0.1);border:1px solid rgba(212,160,32,0.2);padding:16px 20px;flex:1;min-width:120px;text-align:center;">
+          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--amber);">2026</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:1px;margin-top:4px;">40th Year</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Upcoming Events Preview -->
+  <div class="events-preview">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:0;">
+      <div><span class="section-tag">What's Coming</span>
+      <h2 class="section-title" style="color:#fff;margin-bottom:0;">Upcoming <em>Events</em></h2></div>
+      <button class="btn-outline" onclick="showPage('events')" style="margin-bottom:8px;">See All Events →</button>
+    </div>
+    <div class="events-strip">
+      <div class="event-mini" onclick="showPage('events')">
+        <div class="date-badge">📅 March 15, 2026</div>
+        <h4>Prayer Garden Special</h4>
+        <p>📍 JRM Manila · One-day prayer & fasting</p>
+      </div>
+      <div class="event-mini" onclick="showPage('events')">
+        <div class="date-badge">📅 April 12, 2026</div>
+        <h4>DNG Graduation 2026</h4>
+        <p>📍 JRM Manila · Discipleship completion</p>
+      </div>
+      <div class="event-mini" onclick="showPage('events')">
+        <div class="date-badge">📅 June 2026</div>
+        <h4>National Prayer Gathering</h4>
+        <p>📍 Manila · Multi-church national event</p>
+      </div>
+      <div class="event-mini" onclick="showPage('events')">
+        <div class="date-badge">📅 September 2026</div>
+        <h4>40th Anniversary Celebration</h4>
+        <p>📍 JRM Manila · 1986–2026 milestone</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sermons Preview -->
+  <div class="sermons-preview">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;">
+      <div><span class="section-tag">Recent Messages</span>
+      <h2 class="section-title" style="color:var(--charcoal);margin-bottom:0;">Latest <em>Sermons</em></h2></div>
+      <button class="btn-dark" onclick="showPage('sermons')" style="margin-bottom:4px;">All Sermons →</button>
+    </div>
+    <div class="sermon-grid-home">
+      <div class="sermon-card-home featured" onclick="showPage('sermons')">
+        <span class="sermon-series">Latest Message</span>
+        <div class="sermon-date">February 23, 2026</div>
+        <div class="sermon-title">"When You Talk to Jesus — He Actually Listens"</div>
+        <div class="sermon-speaker">Bishop Vincent Javier</div>
+        <div class="sermon-play">▶ Watch Now</div>
+      </div>
+      <div class="sermon-card-home" onclick="showPage('sermons')">
+        <div class="sermon-date">February 16, 2026</div>
+        <div class="sermon-title">"FIRST: Giving What You've Never Given Before"</div>
+        <div class="sermon-speaker">Bishop Vincent Javier</div>
+        <div class="sermon-play">▶ Watch</div>
+      </div>
+      <div class="sermon-card-home" onclick="showPage('sermons')">
+        <div class="sermon-date">February 9, 2026</div>
+        <div class="sermon-title">"The Presence of Jesus in Everyday Life"</div>
+        <div class="sermon-speaker">Bishop Vincent Javier</div>
+        <div class="sermon-play">▶ Watch</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Social Media & Reviews -->
+  <div class="social-section">
+    <span class="section-tag">Stay Connected</span>
+    <h2 class="section-title" style="color:#fff;">Follow JRM <em>Online</em></h2>
+    <div class="social-platforms">
+      <div class="social-card fb"><div class="social-icon">📘</div><div class="social-name">Facebook</div><div class="social-handle">@jrmcentral</div></div>
+      <div class="social-card yt"><div class="social-icon">📺</div><div class="social-name">YouTube</div><div class="social-handle">Jesus Reigns Ministries</div></div>
+      <div class="social-card ig"><div class="social-icon">📸</div><div class="social-name">Instagram</div><div class="social-handle">@jrmcentral · 673 followers</div></div>
+      <div class="social-card twitter"><div class="social-icon">𝕏</div><div class="social-name">Twitter / X</div><div class="social-handle">@jrmcentral</div></div>
+      <div class="social-card tiktok"><div class="social-icon">🎵</div><div class="social-name">TikTok</div><div class="social-handle">@jrmcentral</div></div>
+    </div>
+    <div class="reviews-strip">
+      <div class="reviews-header">
+        <h3>What People Are Saying</h3>
+        <div class="google-rating">
+          <div class="rating-num">4.9</div>
+          <div><div class="stars">★★★★★</div><div class="rating-count">Based on Google Reviews</div></div>
+        </div>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"JRM has been my spiritual home for 15 years. The Word is always deep, relevant, and life-changing."</p><div class="reviewer">Maria Santos · JRM Member</div></div>
+        <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"The warmth of this church is unlike anything I've experienced. Bishop Vincent is a true shepherd."</p><div class="reviewer">James Reyes · First-time visitor</div></div>
+        <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Even watching online from Dubai, I feel the presence of God. JRM is truly a global church family."</p><div class="reviewer">Grace Dela Cruz · JRM Dubai</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Give CTA -->
+  <div style="background:var(--amber);padding:60px 64px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;">
+    <div><span class="section-tag" style="color:rgba(30,30,30,0.5);">Partner With Us</span>
+      <h2 class="section-title" style="color:var(--charcoal);font-size:36px;margin-bottom:8px;">Your Giving <em>Advances</em> the Kingdom</h2>
+      <p style="font-size:15px;color:rgba(30,30,30,0.6);max-width:480px;">Every offering sown into JRM goes toward reaching more souls, planting more churches, and discipling the next generation.</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap;">
+      <button class="btn-dark" onclick="showPage('give')">💳 Give Online</button>
+      <button class="btn-outline-dark" onclick="showPage('give')" style="border:2px solid rgba(30,30,30,0.3);color:var(--charcoal);background:none;font-weight:600;font-size:14px;padding:12px 24px;border-radius:3px;cursor:pointer;">Learn More</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div style="display:flex;align-items:center;gap:11px;margin-bottom:12px;">
+          <div style="width:38px;height:38px;background:var(--amber);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:16px;">✝</div>
+          <div><strong style="font-family:'Playfair Display',serif;font-size:15px;color:#fff;display:block;">Jesus Reigns Ministries</strong><span style="font-size:9px;letter-spacing:2px;color:var(--amber);text-transform:uppercase;">Est. 1986</span></div>
+        </div>
+        <p>A caring church committed to win souls and make disciples. Where Jesus reigns, nations are transformed.</p>
+        <div class="footer-social">
+          <a>f</a><a>▶</a><a>📸</a><a>𝕏</a><a>🎵</a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Ministry</h4><ul>
+        <li onclick="showPage('about')">About JRM</li>
+        <li onclick="showPage('services')">Sunday Services</li>
+        <li onclick="showPage('dng')">DNG Program</li>
+        <li onclick="showPage('pastoral')">Pastoral Services</li>
+        <li onclick="showPage('blog')">Devotionals</li>
+      </ul></div>
+      <div class="footer-col"><h4>Get Involved</h4><ul>
+        <li onclick="showPage('new-here')">I'm New Here</li>
+        <li onclick="showPage('prayer-wall')">Prayer Wall</li>
+        <li onclick="showPage('testimony')">Testimonies</li>
+        <li onclick="showPage('give')">Give Online</li>
+        <li onclick="showPage('members')">Members Portal</li>
+      </ul></div>
+      <div class="footer-col"><h4>Network</h4><ul>
+        <li onclick="showPage('directory')">Church Directory</li>
+        <li onclick="showPage('international')">International</li>
+        <li onclick="showPage('academy')">JRCA / JRCC</li>
+        <li onclick="showPage('events')">Events</li>
+      </ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul>
+        <li onclick="showPage('contact')">Visit Us</li>
+        <li>811 J. Nakpil St.<br>Malate, Manila 1004</li>
+        <li>(02) 4003819</li>
+        <li onclick="showPage('livestream')">Watch Online</li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Jesus Reigns Ministries · All Rights Reserved</p>
+      <span>jesusreigns.com</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══ PAGE: ABOUT ═══════════════════════════════════ -->
+<div class="page" id="page-about">
+  <div class="page-hero"><div class="page-hero-bar"></div>
+    <div class="eyebrow">Our Story</div>
+    <h1>40 Years of <em>Faithful</em> Ministry</h1>
+    <p>From a small fellowship in Malate to a global network of churches — this is the story of Jesus Reigns Ministries.</p>
+  </div>
+  <div class="content-section dark">
+    <span class="section-tag">Leadership</span>
+    <h2 class="section-title" style="color:#fff;">Meet Our <em>Pastors</em></h2>
+    <div class="leadership-grid">
+      <div class="leader-card"><div class="leader-avatar">✝</div><div class="leader-name">Bishop Vincent Javier</div><div class="leader-title">Senior Bishop & Founder</div></div>
+      <div class="leader-card"><div class="leader-avatar">🕊️</div><div class="leader-name">Dr. Ligaya Javier</div><div class="leader-title">Co-Founder & Pastor</div></div>
+      <div class="leader-card"><div class="leader-avatar">📖</div><div class="leader-name">JRM Pastoral Team</div><div class="leader-title">Ministry Leaders</div></div>
+    </div>
+  </div>
+  <div class="content-section light">
+    <span class="section-tag">Our History</span>
+    <h2 class="section-title" style="color:var(--charcoal);">A Journey of <em>40 Years</em></h2>
+    <div style="max-width:720px;">
+      <div class="timeline-row"><div class="timeline-year">1986</div><div class="timeline-content"><h4>JRM Founded</h4><p>Bishop Vincent and Dr. Ligaya Javier establish Jesus Reigns Ministries at 811 J. Nakpil St., Malate, Manila with a vision of a model church.</p></div></div>
+      <div class="timeline-row"><div class="timeline-year">1990s</div><div class="timeline-content"><h4>Provincial Expansion</h4><p>JRM begins planting churches across the Philippines — from Luzon to Visayas to Mindanao. The DNG (Discipling the Next Generation) program takes root.</p></div></div>
+      <div class="timeline-row"><div class="timeline-year">2000s</div><div class="timeline-content"><h4>International Reach</h4><p>JRM establishes outreaches in Hong Kong, Dubai, the United Kingdom, and other nations where Filipino communities are growing.</p></div></div>
+      <div class="timeline-row"><div class="timeline-year">2010s</div><div class="timeline-content"><h4>Institutional Growth</h4><p>Jesus Reigns Christian Academy (JRCA) and Jesus Reigns Christian College (JRCC) are established under Dr. Ligaya Javier's leadership.</p></div></div>
+      <div class="timeline-row"><div class="timeline-year">2026</div><div class="timeline-content"><h4>40th Anniversary</h4><p>JRM celebrates 40 years with 85 provincial churches, 55 ongoing missions, and a global digital home at jesusreigns.com.</p></div></div>
+    </div>
+  </div>
+  <div class="content-section dark">
+    <span class="section-tag">Core Values</span>
+    <h2 class="section-title" style="color:#fff;">The <em>WISDOM</em> Framework</h2>
+    <div class="values-table">
+      <div class="value-cell"><div class="value-letter">W</div><div class="value-word">Worship</div><div class="value-desc">Exalting Jesus as Lord through Spirit-filled, authentic worship in every service and in daily life.</div></div>
+      <div class="value-cell"><div class="value-letter">I</div><div class="value-word">Intercession</div><div class="value-desc">A praying church that covers every ministry, member, and mission with fervent intercession.</div></div>
+      <div class="value-cell"><div class="value-letter">S</div><div class="value-word">Service</div><div class="value-desc">Serving God by serving people — in the church, the community, and across the nations.</div></div>
+      <div class="value-cell"><div class="value-letter">D</div><div class="value-word">Discipleship</div><div class="value-desc">Making disciples through the DNG program and mentoring relationships that build character and faith.</div></div>
+      <div class="value-cell"><div class="value-letter">O</div><div class="value-word">One Heart</div><div class="value-desc">Unity across all campuses, regions, and generations — one Lord, one faith, one mission.</div></div>
+      <div class="value-cell"><div class="value-letter">M</div><div class="value-word">Mission</div><div class="value-desc">Going to the ends of the earth — planting churches, raising leaders, and reaching the unreached.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE: I'M NEW HERE ════════════════════════════ -->
+<div class="page" id="page-new-here">
+  <div class="page-hero" style="background:var(--charcoal2);"><div class="page-hero-bar"></div>
+    <div class="eyebrow">Welcome</div>
+    <h1>We're So Glad <em>You're Here</em></h1>
+    <p>Whether this is your first Sunday or you're still just exploring — there's a place for you at JRM. Here's everything you need to know.</p>
+  </div>
+  <div class="content-section dark">
+    <span class="section-tag">Your First Visit</span>
+    <h2 class="section-title" style="color:#fff;">What to <em>Expect</em></h2>
+    <div class="steps-grid">
+      <div class="step-card"><div class="step-num">01</div><div class="step-title">Just Show Up</div><div class="step-desc">No dress code, no pressure. Come as you are. Our doors are open every Sunday at 8:00 AM, 10:30 AM, and 1:00 PM.</div></div>
+      <div class="step-card"><div class="step-num">02</div><div class="step-title">Enjoy the Worship</div><div class="step-desc">JRM services are Spirit-filled, warm, and welcoming. Expect powerful worship music, prayer, and an in-depth message from God's Word.</div></div>
+      <div class="step-card"><div class="step-num">03</div><div class="step-title">Meet the Family</div><div class="step-desc">Our welcome team will greet you at the door. After service, stay for fellowship and meet some of our church family.</div></div>
+      <div class="step-card"><div class="step-num">04</div><div class="step-title">Take Your Next Step</div><div class="step-desc">Ready to go deeper? Learn about our DNG Discipleship program or fill out a connection card to stay in touch with us.</div></div>
+    </div>
+  </div>
+  <div class="content-section light">
+    <span class="section-tag">Common Questions</span>
+    <h2 class="section-title" style="color:var(--charcoal);">You Might Be <em>Wondering...</em></h2>
+    <div style="max-width:700px;">
+      <div class="faq-item"><div class="faq-q">Where is JRM located?</div><div class="faq-a">We are at 811 J. Nakpil cor. P.H. Lim Sts., Malate, Manila 1004. You can also join us online every Sunday at 8:00 AM via YouTube and Facebook Live.</div></div>
+      <div class="faq-item"><div class="faq-q">What time are the Sunday services?</div><div class="faq-a">We have three services every Sunday: 8:00 AM (also live-streamed), 10:30 AM, and 1:00 PM. You can come to whichever works best for you.</div></div>
+      <div class="faq-item"><div class="faq-q">What should I wear?</div><div class="faq-a">Come as you are. Most people wear smart casual — comfortable and respectful. There is no dress code at JRM.</div></div>
+      <div class="faq-item"><div class="faq-q">Is there anything for my kids?</div><div class="faq-a">Yes! We have ministry programs for children and youth. Ask our welcome team when you arrive and they'll guide you to the right place.</div></div>
+      <div class="faq-item"><div class="faq-q">How can I get more connected?</div><div class="faq-a">The best first step is our DNG (Discipling the Next Generation) Program — a structured discipleship journey that has helped thousands of JRM members grow in their faith.</div></div>
+    </div>
+    <div style="margin-top:40px;display:flex;gap:14px;flex-wrap:wrap;">
+      <button class="btn-primary" onclick="showPage('services')">Plan Your Visit →</button>
+      <button class="btn-dark" onclick="showPage('dng')">Explore DNG Program →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE: SERVICES ════════════════════════════════ -->
+<div class="page" id="page-services">
+  <div class="page-hero"><div class="page-hero-bar"></div>
+    <div class="eyebrow">Every Sunday</div>
+    <h1>Three Services. <em>One Family.</em></h1>
+    <p>Join us in person at our Malate campus or tune in online. There's always a service for you.</p>
+  </div>
+  <div class="content-section dark">
+    <div class="grid-3">
+      <div class="card-dark card-amber-top" style="padding:36px;">
+        <div style="font-size:32px;margin-bottom:16px;">🌅</div>
+        <div style="font-family:'Playfair Display',serif;font-size:42px;font-weight:900;color:var(--amber);">8:00 AM</div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin:8px 0 16px;">First Service</div>
+        <p style="font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:20px;">Our flagship morning service — also streamed live on YouTube and Facebook for our global online community.</p>
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(231,76,60,0.12);border:1px solid rgba(231,76,60,0.25);padding:6px 14px;border-radius:2px;font-size:11px;font-weight:600;color:#e74c3c;">
+          <span class="pulse-dot"></span> Live Streamed
+        </div>
+      </div>
+      <div class="card-dark" style="padding:36px;">
+        <div style="font-size:32px;margin-bottom:16px;">☀️</div>
+        <div style="font-family:'Playfair Display',serif;font-size:42px;font-weight:900;color:var(--amber);">10:30 AM</div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin:8px 0 16px;">Second Service</div>
+        <p style="font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;">A warm mid-morning gathering for families. Same powerful worship, same Word — different schedule.</p>
+      </div>
+      <div class="card-dark" style="padding:36px;">
+        <div style="font-size:32px;margin-bottom:16px;">🌤️</div>
+        <div style="font-family:'Playfair Display',serif;font-size:42px;font-weight:900;color:var(--amber);">1:00 PM</div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin:8px 0 16px;">Afternoon Service</div>
+        <p style="font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;">Our afternoon service — perfect for those who need the extra morning hours. Full worship and message.</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px;padding:24px;background:rgba(212,160,32,0.07);border:1px solid rgba(212,160,32,0.15);border-radius:3px;">
+      <p style="color:rgba(255,255,255,0.5);font-size:14px;">📍 &nbsp;<strong style="color:#fff;">811 J. Nakpil cor. P.H. Lim Sts., Malate, Manila 1004</strong> &nbsp;·&nbsp; Tel: (02) 4003819 / 254-7569</p>
+    </div>
+  </div>
+  <div class="content-section light" style="text-align:center;padding:60px 64px;">
+    <span class="section-tag">Can't Make It In Person?</span>
+    <h2 class="section-title" style="color:var(--charcoal);">Watch Us <em>Online</em></h2>
+    <p style="color:#666;max-width:480px;margin:0 auto 32px;line-height:1.7;">Every Sunday at 8:00 AM, our first service is broadcast live on YouTube and Facebook. No download required — just click and worship with us from anywhere in the world.</p>
+    <button class="btn-primary" onclick="showPage('livestream')">▶ Go to Live Stream Page</button>
+  </div>
+</div>
+
+<!-- ═══ PAGE: LIVE STREAM ═════════════════════════════ -->
+<div class="page" id="page-livestream">
+  <div class="livestream-main">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0;flex-wrap:wrap;gap:16px;">
+      <div><span class="section-tag">Every Sunday · 8:00 AM</span>
+      <h1 style="font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,48px);font-weight:900;color:#fff;">📺 Live <em style="color:var(--amber-light);">Stream</em></h1></div>
+      <div style="display:flex;align-items:center;gap:10px;background:rgba(231,76,60,0.12);border:1px solid rgba(231,76,60,0.3);padding:10px 18px;border-radius:3px;">
+        <span class="pulse-dot"></span><span style="color:#e74c3c;font-weight:600;font-size:13px;">Next Live: Sunday 8:00 AM</span>
+      </div>
+    </div>
+    <div class="embed-container">
+      <div class="placeholder"><span>📺</span><p style="color:rgba(255,255,255,0.4);">Live stream embeds here every Sunday at 8:00 AM<br><em>YouTube & Facebook Live</em></p>
+      <div style="display:flex;gap:12px;margin-top:20px;justify-content:center;">
+        <a href="#" style="background:#FF0000;color:#fff;font-weight:700;font-size:13px;padding:10px 20px;border-radius:3px;text-decoration:none;">▶ YouTube Live</a>
+        <a href="#" style="background:#1877F2;color:#fff;font-weight:700;font-size:13px;padding:10px 20px;border-radius:3px;text-decoration:none;">▶ Facebook Live</a>
+      </div></div>
+    </div>
+    <div class="stream-schedule">
+      <div style="background:var(--charcoal3);padding:24px;border-left:4px solid var(--amber);"><div style="font-size:18px;font-weight:700;color:var(--amber);">8:00 AM</div><div style="font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:1px;margin-top:4px;">First Service · LIVE</div></div>
+      <div style="background:var(--charcoal3);padding:24px;"><div style="font-size:18px;font-weight:700;color:#fff;">10:30 AM</div><div style="font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:1px;margin-top:4px;">Second Service</div></div>
+      <div style="background:var(--charcoal3);padding:24px;"><div style="font-size:18px;font-weight:700;color:#fff;">1:00 PM</div><div style="font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:1px;margin-top:4px;">Afternoon Service</div></div>
+    </div>
+  </div>
+  <div class="content-section dark" style="padding-top:40px;">
+    <span class="section-tag">Missed the Live Service?</span>
+    <h2 class="section-title" style="color:#fff;">Watch Recent <em>Recordings</em></h2>
+    <div class="grid-3" style="margin-top:32px;">
+      <div class="card-dark" style="cursor:pointer;" onclick="showPage('sermons')">
+        <div style="font-size:11px;color:var(--amber);font-weight:600;letter-spacing:1px;margin-bottom:8px;">February 23, 2026</div>
+        <div style="font-family:'Playfair Display',serif;font-size:17px;color:#fff;font-weight:700;margin-bottom:6px;">"When You Talk to Jesus — He Actually Listens"</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.3);">Bishop Vincent Javier · 52 min</div>
+      </div>
+      <div class="card-dark" style="cursor:pointer;" onclick="showPage('sermons')">
+        <div style="font-size:11px;color:var(--amber);font-weight:600;letter-spacing:1px;margin-bottom:8px;">February 16, 2026</div>
+        <div style="font-family:'Playfair Display',serif;font-size:17px;color:#fff;font-weight:700;margin-bottom:6px;">"FIRST: Giving What You've Never Given Before"</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.3);">Bishop Vincent Javier · 48 min</div>
+      </div>
+      <div class="card-dark" style="cursor:pointer;" onclick="showPage('sermons')">
+        <div style="font-size:11px;color:var(--amber);font-weight:600;letter-spacing:1px;margin-bottom:8px;">February 9, 2026</div>
+        <div style="font-family:'Playfair Display',serif;font-size:17px;color:#fff;font-weight:700;margin-bottom:6px;">"The Presence of Jesus in Everyday Life"</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.3);">Bishop Vincent Javier · 44 min</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:32px;"><button class="btn-outline" onclick="showPage('sermons')">Browse All Sermons →</button></div>
+  </div>
+</div>
+
+<!-- ═══ PAGE: EVENTS ══════════════════════════════════ -->
+<div class="page" id="page-events">
+  <div class="page-hero"><div class="page-hero-bar"></div>
+    <div class="eyebrow">Events & Calendar</div>
+    <h1>What's <em>Happening</em><br>at JRM</h1>
+    <p>From major gatherings to intimate prayer services — see everything coming up in our ministry calendar.</p>
+  </div>
+  <div class="content-section dark">
+    <div class="event-filters">
+      <button class="filter-btn active" onclick="filterEvents(this,'all')">All Events</button>
+      <button class="filter-btn" onclick="filterEvents(this,'special')">Special Services</button>
+      <button class="filter-btn" onclick="filterEvents(this,'prayer')">Prayer Events</button>
+      <button class="filter-btn" onclick="filterEvents(this,'youth')">Youth & Family</button>
+      <button class="filter-btn" onclick="filterEvents(this,'discipleship')">Discipleship</button>
+      <button class="filter-btn" onclick="filterEvents(this,'global')">Global Events</button>
+      <button class="filter-btn" onclick="filterEvents(this,'anniversary')">Anniversary</button>
+    </div>
+    <div class="events-cards-grid" id="events-grid">
+      <div class="event-card" data-type="prayer">
+        <div class="event-card-banner" style="background:linear-gradient(135deg,#1a2a3a,#0d1a2a);">🙏<span class="event-card-type">Prayer</span></div>
+        <div class="event-card-body">
+          <div class="event-card-date">📅 March 15, 2026</div>
+          <div class="event-card-title">Prayer Garden Special</div>
+          <div class="event-card-location">📍 JRM Manila · Malate Campus</div>
+          <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6;margin-bottom:16px;">A one-day prayer and fasting gathering. Come and press into God's presence together as a church family.</p>
+          <div class="event-card-actions"><button class="btn-sm-amber" onclick="openRegistration('Prayer Garden Special')">Register</button><button class="btn-sm-ghost">Learn More</button></div>
+        </div>
+      </div>
+      <div class="event-card" data-type="discipleship">
+        <div class="event-card-banner" style="background:linear-gradient(135deg,#1a2a1a,#0d1a0d);">🎓<span class="event-card-type">Discipleship</span></div>
+        <div class="event-card-body">
+          <div class="event-card-date">📅 April 12, 2026</div>
+          <div class="event-card-title">DNG Graduation 2026</div>
+          <div class="event-card-location">📍 JRM Manila · Main Sanctuary</div>
+          <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6;margin-bottom:16px;">Celebrating the completion of our Discipling the Next Generation program. A milestone for JRM families.</p>
+          <div class="event-card-actions"><button class="btn-sm-amber" onclick="openRegistration('DNG Graduation 2026')">Register</button><button class="btn-sm-ghost">Learn More</button></div>
+        </div>
+      </div>
+      <div class="event-card" data-type="youth">
+        <div class="event-card-banner" style="background:linear-gradient(135deg,#2a1a3a,#1a0d2a);">⛺<span class="event-card-type">Youth</span></div>
+        <div class="event-card-body">
+          <div class="event-card-date">📅 May 2026</div>
+          <div class="event-card-title">Youth Camp 2026</div>
+          <div class="event-card-location">📍 TBA · Camp Location</div>
+          <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6;margin-bottom:16px;">An immersive camp experience for JRM's young people — worship, discipleship, fellowship, and fun.</p>
+          <div class="event-card-actions"><button class="btn-sm-amber" onclick="openRegistration('Youth Camp 2026')">Register</button><button class="btn-sm-ghost">Learn More</button></div>
+        </div>
+      </div>
+      <div class="event-card" data-type="youth">
+        <div class="event-card-banner" style="background:linear-gradient(135deg,#2a1a1a,#1a0d0d);">🏕️<span class="event-card-type">Family</span></div>
+        <div class="event-card-body">
+          <div class="event-card-date">📅 May 2026</div>
+          <div class="event-card-title">Family Camp 2026</div>
+          <div class="event-card-location">📍 TBA · Retreat Venue</div>
+          <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6;margin-bottom:16px;">A whole-family retreat — strengthening homes, deepening faith, and building memories that last a lifetime.</p>
+          <div class="event-card-actions"><button class="btn-sm-amber" onclick="openRegistration('Family Camp 2026')">Register</button><button class="btn-sm-ghost">Learn More</button></div>
+        </div>
+      </div>
+      <div class="event-card" data-type="prayer">
+        <div class="event-card-banner" style="background:linear-gradient(135deg,#1a1a2a,#0d0d1a);">🕯️<span class="event-card-type">Prayer</span></div>
+        <div class="event-card-body">
+          <div class="event-card-date">📅 June 2026</div>
+          <div class="event-card-title">National Prayer Gathering (NPG)</div>
+          <div class="event-card-location">📍 Manila · Venue TBA</div>
+          <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6;margin-bottom:16px;">A large-scale national prayer gathering — JRM joins with partner churches to intercede for the Philippines and the nations.</p>
+          <div class="event-card-actions"><button class="btn-sm-amber" onclick="openRegistration('National Prayer Gathering')">Register</button><button class="btn-sm-ghost">Learn More</button></div>
+        </div>
+      </div>
+      <div class="event-card" data-type="global">
+        <div class="event-card-banner" style="background:linear-gradient(135deg,#1a2a2a,#0d1a1a);">🌍<span class="event-card-type">Global</span></div>
+        <div class="event-card-body">
+          <div class="event-card-date">📅 June 2026</div>
+          <div class="event-card-title">JRM Dubai Conference</div>
+          <div class="event-card-location">📍 Dubai, UAE · Venue TBA</div>
+          <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6;margin-bottom:16px;">A ministry conference for the JRM Dubai outreach community — connecting the Filipino diaspora around the Word.</p>
+          <div class="event-card-actions"><button class="btn-sm-amber" onclick="openRegistration('JRM Dubai Conference')">Register</button><button class="btn-sm-ghost">Learn More</button></div>
+        </div>
+      </div>
+      <div class="event-card" data-type="special">
+        <div class="event-card-banner" style="background:linear-gradient(135deg,#2a2a1a,#1a1a0d);">✝️<span class="event-card-type">Special Service</span></div>
+        <div class="event-card-body">
+          <div class="event-card-date">📅 August 2026</div>
+          <div class="event-card-title">Anniversary Sunday Services</div>
+          <div class="event-card-location">📍 JRM Manila · All Services</div>
+          <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6;margin-bottom:16px;">Special Sunday services leading up to the 40th anniversary celebration — commemorating 40 years of God's faithfulness.</p>
+          <div class="event-card-actions"><button class="btn-sm-amber" onclick="openRegistration('Anniversary Sunday')">Register</button><button class="btn-sm-ghost">Learn More</button></div>
+        </div>
+      </div>
+      <div class="event-card" data-type="global">
+        <div class="event-card-banner" style="background:linear-gradient(135deg,#1a2a3a,#0d1a2a);">🇭🇰<span class="event-card-type">Global</span></div>
+        <div class="event-card-body">
+          <div class="event-card-date">📅 July 2026</div>
+          <div class="event-card-title">JRM Hong Kong Prayer Night</div>
+          <div class="event-card-location">📍 Hong Kong</div>
+          <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6;margin-bottom:16px;">A night of worship and intercession for the JRM Hong Kong community and the region.</p>
+          <div class="event-card-actions"><button class="btn-sm-amber" onclick="openRegistration('JRM HK Prayer Night')">Register</button><button class="btn-sm-ghost">Learn More</button></div>
+        </div>
+      </div>
+      <div class="event-card" data-type="anniversary">
+        <div class="event-card-banner" style="background:linear-gradient(135deg,#2a1a0d,#1a0d05);border-top:4px solid var(--amber);">🎉<span class="event-card-type" style="background:var(--amber);color:var(--charcoal);">40th Anniversary</span></div>
+        <div class="event-card-body">
+          <div class="event-card-date" style="color:var(--amber-light);font-size:12px;font-weight:700;">📅 September 2026 · 1986–2026</div>
+          <div class="event-card-title" style="font-size:22px;">JRM 40th Anniversary Celebration</div>
+          <div class="event-card-location">📍 JRM Manila · Full Day Event</div>
+          <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6;margin-bottom:16px;">40 years of God's faithfulness. A landmark celebration for the entire JRM global family — live, online, and across all campuses.</p>
+          <div class="event-card-actions"><button class="btn-sm-amber" onclick="openRegistration('40th Anniversary Celebration')">Register Now</button><button class="btn-sm-ghost">Learn More</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Google Calendar -->
+  <div class="calendar-section">
+    <span class="section-tag">Full Church Calendar</span>
+    <h2 class="section-title" style="color:#fff;">Monthly <em>Calendar</em> View</h2>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:0;">
+      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,0.4);"><span style="width:12px;height:12px;border-radius:2px;background:var(--amber);display:inline-block;"></span>Services & Special Sundays</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,0.4);"><span style="width:12px;height:12px;border-radius:2px;background:#4A90D9;display:inline-block;"></span>Discipleship</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,0.4);"><span style="width:12px;height:12px;border-radius:2px;background:#27AE60;display:inline-block;"></span>Community Outreach</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,0.4);"><span style="width:12px;height:12px;border-radius:2px;background:#8E44AD;display:inline-block;"></span>Youth & Family</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,0.4);"><span style="width:12px;height:12px;border-radius:2px;background:#C0392B;display:inline-block;"></span>Prayer & Intercession</div>
+    </div>
+    <div class="calendar-embed">
+      <div class="calendar-embed-icon">📅</div>
+      <p>Google Calendar will be embedded here — live-synced from the JRM events team. Add events to your own calendar with one click.</p>
+      <button class="btn-outline" style="margin-top:8px;">+ Subscribe to JRM Calendar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE: SERMONS ══════════════════════════════════ -->
+<div class="page" id="page-sermons">
+  <div class="page-hero"><div class="page-hero-bar"></div>
+    <div class="eyebrow">Messages & Teachings</div>
+    <h1>The Word of <em>God</em></h1>
+    <p>Explore our growing archive of sermons — search by series, speaker, or topic.</p>
+  </div>
+  <div class="content-section dark">
+    <div class="sermons-search">
+      <input type="text" class="form-input" style="flex:1;" placeholder="🔍 Search sermons by title, topic, or scripture...">
+      <select class="form-select" style="width:180px;"><option>All Series</option><option>FIRST: First Fruits</option><option>Talking to Jesus</option><option>The Kingdom Life</option></select>
+      <select class="form-select" style="width:160px;"><option>All Speakers</option><option>Bishop Vincent Javier</option><option>Guest Speakers</option></select>
+    </div>
+    <div class="sermon-archive">
+      <div class="sermon-archive-card"><div class="sermon-thumb">🕊️<div class="sermon-thumb-play">▶</div></div><div class="sermon-archive-body"><div class="sermon-archive-series">Series: Talking to Jesus</div><div class="sermon-archive-title">"When You Talk to Jesus — He Actually Listens"</div><div class="sermon-archive-meta">Bishop Vincent Javier · Feb 23, 2026 · 52 min</div></div></div>
+      <div class="sermon-archive-card"><div class="sermon-thumb">🌾<div class="sermon-thumb-play">▶</div></div><div class="sermon-archive-body"><div class="sermon-archive-series">Series: FIRST</div><div class="sermon-archive-title">"Giving What You've Never Given Before"</div><div class="sermon-archive-meta">Bishop Vincent Javier · Feb 16, 2026 · 48 min</div></div></div>
+      <div class="sermon-archive-card"><div class="sermon-thumb">✝️<div class="sermon-thumb-play">▶</div></div><div class="sermon-archive-body"><div class="sermon-archive-series">Series: Talking to Jesus</div><div class="sermon-archive-title">"The Presence of Jesus in Everyday Life"</div><div class="sermon-archive-meta">Bishop Vincent Javier · Feb 9, 2026 · 44 min</div></div></div>
+      <div class="sermon-archive-card"><div class="sermon-thumb">🏔️<div class="sermon-thumb-play">▶</div></div><div class="sermon-archive-body"><div class="sermon-archive-series">Series: Kingdom Life</div><div class="sermon-archive-title">"Building Your House on the Rock"</div><div class="sermon-archive-meta">Guest Speaker · Feb 2, 2026 · 38 min</div></div></div>
+      <div class="sermon-archive-card"><div class="sermon-thumb">🔥<div class="sermon-thumb-play">▶</div></div><div class="sermon-archive-body"><div class="sermon-archive-series">Series: Talking to Jesus</div><div class="sermon-archive-title">"Prayer That Changes Everything"</div><div class="sermon-archive-meta">Bishop Vincent Javier · Jan 26, 2026 · 55 min</div></div></div>
+      <div class="sermon-archive-card"><div class="sermon-thumb">🌊<div class="sermon-thumb-play">▶</div></div><div class="sermon-archive-body"><div class="sermon-archive-series">Series: FIRST</div><div class="sermon-archive-title">"First in Your Day, First in Your Heart"</div><div class="sermon-archive-meta">Bishop Vincent Javier · Jan 19, 2026 · 50 min</div></div></div>
+    </div>
+    <div style="text-align:center;margin-top:32px;"><button class="btn-outline">Load More Sermons</button></div>
+  </div>
+</div>
+
+<!-- ═══ PAGE: PRAYER WALL ═════════════════════════════ -->
+<div class="page" id="page-prayer-wall">
+  <div class="page-hero" style="background:var(--charcoal2);"><div class="page-hero-bar"></div>
+    <div class="eyebrow">Community Prayer</div>
+    <h1>The <em>Prayer Wall</em></h1>
+    <p>Submit your prayer requests. Our pastoral team and church family will pray with you and for you.</p>
+  </div>
+  <div class="content-section dark">
+    <div class="prayer-layout">
+      <div>
+        <span class="section-tag">Community Requests</span>
+        <h2 class="section-title" style="color:#fff;font-size:28px;">What the <em>Church</em> is Praying For</h2>
+        <div class="prayer-cards">
+          <div class="prayer-card"><div class="prayer-card-header"><span class="prayer-card-name">Maria S.</span><span class="prayer-card-time">2 hours ago</span></div><p class="prayer-card-text">"Please pray for my mother's healing. She has been hospitalized for a week and we are trusting God for a miracle."</p><div class="prayer-card-prayed">🙏 14 people are praying</div></div>
+          <div class="prayer-card"><div class="prayer-card-header"><span class="prayer-card-name">James R.</span><span class="prayer-card-time">5 hours ago</span></div><p class="prayer-card-text">"Pray for our family as we navigate a difficult financial season. We believe God will provide."</p><div class="prayer-card-prayed">🙏 22 people are praying</div></div>
+          <div class="prayer-card"><div class="prayer-card-header"><span class="prayer-card-name">Grace D.</span><span class="prayer-card-time">1 day ago</span></div><p class="prayer-card-text">"Intercede for the Philippines. For revival, for our leaders, and for every city where JRM has a church."</p><div class="prayer-card-prayed">🙏 41 people are praying</div></div>
+          <div class="prayer-card"><div class="prayer-card-header"><span class="prayer-card-name">Anonymous</span><span class="prayer-card-time">2 days ago</span></div><p class="prayer-card-text">"Please pray for my marriage. We are going through a hard season but I believe God can restore what was broken."</p><div class="prayer-card-prayed">🙏 18 people are praying</div></div>
+          <div class="prayer-card"><div class="prayer-card-header"><span class="prayer-card-name">JRM Dubai</span><span class="prayer-card-time">3 days ago</span></div><p class="prayer-card-text">"Pray for our team as we build the JRM website. May this platform reach many souls for Jesus."</p><div class="prayer-card-prayed">🙏 56 people are praying</div></div>
+        </div>
+      </div>
+      <div>
+        <span class="section-tag">Submit a Request</span>
+        <h2 class="section-title" style="color:#fff;font-size:28px;">Share Your <em>Prayer Need</em></h2>
+        <div class="form-group"><label class="form-label">Your Name</label><input type="text" class="form-input" placeholder="First name (or leave blank for Anonymous)"></div>
+        <div class="form-group"><label class="form-label">Prayer Request</label><textarea class="form-textarea" style="min-height:140px;" placeholder="Share what's on your heart. Our team reads every request..."></textarea></div>
+        <div class="form-group"><label class="form-label">Visibility</label><select class="form-select"><option>Share publicly on Prayer Wall</option><option>Private — Pastoral team only</option></select></div>
+        <button class="btn-primary" style="width:100%;justify-content:center;">🙏 Submit Prayer Request</button>
+        <p style="font-size:12px;color:rgba(255,255,255,0.25);margin-top:12px;line-height:1.6;">All requests are reviewed by our pastoral team. Private requests are kept completely confidential.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE: DNG PROGRAM ══════════════════════════════ -->
+<div class="page" id="page-dng">
+  <div class="page-hero"><div class="page-hero-bar"></div>
+    <div class="eyebrow">Discipleship</div>
+    <h1>DNG — Discipling the <em>Next Generation</em></h1>
+    <p>The structured discipleship journey that has shaped thousands of JRM members into mature, committed followers of Jesus.</p>
+  </div>
+  <div class="content-section dark">
+    <span class="section-tag">The Journey</span>
+    <h2 class="section-title" style="color:#fff;">Three Stages of <em>Growth</em></h2>
+    <div style="display:grid;grid-template-columns:1fr 60px 1fr 60px 1fr;gap:0;align-items:center;margin-top:40px;" class="dng-path-full">
+      <div class="dng-stage" style="background:var(--charcoal3);padding:36px;text-align:center;"><div class="dng-stage-num">01</div><div class="dng-stage-icon">🌱</div><div class="dng-stage-title">Believer</div><div class="dng-stage-desc">The first stage — establishing the foundational truths of faith, salvation, and life in Christ.</div><div class="dng-stage-badge">Foundation</div></div>
+      <div style="text-align:center;font-size:28px;color:var(--amber);">→</div>
+      <div class="dng-stage" style="background:var(--charcoal2);padding:36px;text-align:center;border:1px solid rgba(212,160,32,0.2);"><div class="dng-stage-num">02</div><div class="dng-stage-icon">📖</div><div class="dng-stage-title">Disciple</div><div class="dng-stage-desc">Going deeper — learning the disciplines of prayer, Scripture, worship, and community life.</div><div class="dng-stage-badge">Growth</div></div>
+      <div style="text-align:center;font-size:28px;color:var(--amber);">→</div>
+      <div class="dng-stage" style="background:var(--charcoal3);padding:36px;text-align:center;"><div class="dng-stage-num">03</div><div class="dng-stage-icon">👑</div><div class="dng-stage-title">Leader</div><div class="dng-stage-desc">Raised up to lead others — equipped to mentor, serve, and multiply disciples in JRM and beyond.</div><div class="dng-stage-badge">Multiplication</div></div>
+    </div>
+  </div>
+  <div class="content-section light">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:flex-start;">
+      <div>
+        <span class="section-tag">Enroll Now</span>
+        <h2 class="section-title" style="color:var(--charcoal);">Start Your <em>Journey</em></h2>
+        <p style="color:#666;line-height:1.8;margin-bottom:24px;">DNG runs in regular cycles throughout the year. Classes meet weekly and are guided by trained JRM leaders. Open to all JRM members and regular attendees.</p>
+        <div class="form-light">
+          <div class="form-group"><label class="form-label" style="color:var(--charcoal);">Full Name</label><input type="text" class="form-input" placeholder="Your full name"></div>
+          <div class="form-group"><label class="form-label" style="color:var(--charcoal);">Contact Number</label><input type="text" class="form-input" placeholder="+63 ..."></div>
+          <div class="form-group"><label class="form-label" style="color:var(--charcoal);">Email Address</label><input type="email" class="form-input" placeholder="your@email.com"></div>
+          <div class="form-group"><label class="form-label" style="color:var(--charcoal);">DNG Stage</label><select class="form-select"><option>Stage 1 — Believer (Starting Out)</option><option>Stage 2 — Disciple</option><option>Stage 3 — Leader</option></select></div>
+          <div class="form-group"><label class="form-label" style="color:var(--charcoal);">Preferred Service Schedule</label><select class="form-select"><option>8:00 AM Service</option><option>10:30 AM Service</option><option>1:00 PM Service</option></select></div>
+          <button class="btn-primary" style="width:100%;justify-content:center;">Submit DNG Enrollment →</button>
+        </div>
+      </div>
+      <div>
+        <div style="background:var(--charcoal);padding:36px;border-left:4px solid var(--amber);">
+          <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:#fff;margin-bottom:16px;">What You'll Experience</h3>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div style="display:flex;gap:12px;"><span style="color:var(--amber);font-weight:700;">✓</span><span style="font-size:14px;color:rgba(255,255,255,0.55);">Weekly sessions with a trained DNG leader</span></div>
+            <div style="display:flex;gap:12px;"><span style="color:var(--amber);font-weight:700;">✓</span><span style="font-size:14px;color:rgba(255,255,255,0.55);">In-depth study of God's Word</span></div>
+            <div style="display:flex;gap:12px;"><span style="color:var(--amber);font-weight:700;">✓</span><span style="font-size:14px;color:rgba(255,255,255,0.55);">Personal mentoring and accountability</span></div>
+            <div style="display:flex;gap:12px;"><span style="color:var(--amber);font-weight:700;">✓</span><span style="font-size:14px;color:rgba(255,255,255,0.55);">Community with fellow JRM members</span></div>
+            <div style="display:flex;gap:12px;"><span style="color:var(--amber);font-weight:700;">✓</span><span style="font-size:14px;color:rgba(255,255,255,0.55);">Certificate and graduation upon completion</span></div>
+          </div>
+        </div>
+        <div style="margin-top:16px;background:var(--charcoal3);padding:24px;display:flex;align-items:center;gap:16px;">
+          <span style="font-size:36px;">📞</span>
+          <div><div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:4px;">Questions about DNG?</div><div style="font-size:12px;color:rgba(255,255,255,0.35);">Contact our discipleship team at (02) 4003819</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE: GIVE ═════════════════════════════════════ -->
+<div class="page" id="page-give">
+  <div class="page-hero" style="background:var(--amber);"><div class="page-hero-bar" style="background:var(--charcoal);"></div>
+    <div class="eyebrow" style="color:rgba(30,30,30,0.5);">Partner With JRM</div>
+    <h1 style="color:var(--charcoal);">Give and <em style="color:#6b4a00;">Advance</em> the Kingdom</h1>
+    <p style="color:rgba(30,30,30,0.6);">Your generosity fuels missions, plants churches, and raises the next generation of disciples across the Philippines and the world.</p>
+  </div>
+  <div class="content-section dark">
+    <div class="give-layout">
+      <div>
+        <span class="section-tag">Online Giving</span>
+        <h2 class="section-title" style="color:#fff;">Give <em>Securely</em> Online</h2>
+        <div class="give-freq">
+          <button class="freq-btn active">One-Time</button>
+          <button class="freq-btn">Weekly</button>
+          <button class="freq-btn">Monthly</button>
+        </div>
+        <div class="form-group"><label class="form-label">Select Amount</label></div>
+        <div class="amount-grid">
+          <button class="amount-btn">₱500</button>
+          <button class="amount-btn selected">₱1,000</button>
+          <button class="amount-btn">₱2,000</button>
+          <button class="amount-btn">₱5,000</button>
+          <button class="amount-btn">₱10,000</button>
+          <button class="amount-btn">Custom</button>
+        </div>
+        <div class="form-group" style="margin-top:20px;"><label class="form-label">Giving Category</label><select class="form-select"><option>Tithe / General Fund</option><option>Missions & Outreach</option><option>Building Fund</option><option>DNG Scholarship</option><option>CESA / Community Outreach</option></select></div>
+        <div class="form-group"><label class="form-label">Full Name</label><input type="text" class="form-input" placeholder="As it appears on your card"></div>
+        <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" placeholder="For confirmation receipt"></div>
+        <div style="background:rgba(212,160,32,0.06);border:1px solid rgba(212,160,32,0.15);padding:14px 16px;border-radius:3px;margin-bottom:20px;">
+          <p style="font-size:12px;color:rgba(255,255,255,0.4);">💳 Accepted: GCash · Maya · Credit/Debit Card · Bank Transfer</p>
+        </div>
+        <button class="btn-primary" style="width:100%;justify-content:center;font-size:15px;padding:16px;">💛 Give ₱1,000 Now</button>
+        <p style="font-size:11px;color:rgba(255,255,255,0.2);margin-top:10px;text-align:center;">Secured by PayMongo & Stripe · All transactions encrypted</p>
+      </div>
+      <div>
+        <div class="give-why">
+          <h3>Why Your Giving Matters</h3>
+          <p>Every peso given to JRM goes directly into ministry — reaching the lost, discipling the saved, and planting churches in unreached areas of the Philippines and the world.</p>
+          <div class="give-stats">
+            <div class="give-stat"><div class="n">85</div><div class="l">Churches Supported</div></div>
+            <div class="give-stat"><div class="n">55</div><div class="l">Active Missions</div></div>
+            <div class="give-stat"><div class="n">40</div><div class="l">Years of Impact</div></div>
+            <div class="give-stat"><div class="n">6+</div><div class="l">Global Regions</div></div>
+          </div>
+        </div>
+        <div style="background:var(--charcoal3);padding:28px;margin-top:2px;">
+          <h4 style="font-size:14px;font-weight:600;color:#fff;margin-bottom:12px;">Other Ways to Give</h4>
+          <div style="font-size:13px;color:rgba(255,255,255,0.45);line-height:2.2;">
+            <div>🏦 Bank Transfer: BDO / BPI / UnionBank</div>
+            <div>📱 GCash: Ask your local JRM pastor</div>
+            <div>✉️ Mail: P.O. Box 1167, Manila 1099</div>
+            <div>🏛️ In-Person: Sunday services, all schedules</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE: TESTIMONY WALL ══════════════════════════ -->
+<div class="page" id="page-testimony">
+  <div class="page-hero" style="background:var(--charcoal2);"><div class="page-hero-bar"></div>
+    <div class="eyebrow">God's Faithfulness</div>
+    <h1>Testimony <em>Wall</em></h1>
+    <p>Stories of God's grace, healing, provision, and transformation from our JRM family around the world.</p>
+  </div>
+  <div class="content-section dark">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:16px;">
+      <div><span class="section-tag">Community Stories</span>
+      <h2 class="section-title" style="color:#fff;margin-bottom:0;">What God Has <em>Done</em></h2></div>
+      <button class="btn-outline" onclick="openTestimonyForm()">Share Your Testimony +</button>
+    </div>
+    <div class="testimony-grid">
+      <div class="testimony-card"><div class="testimony-quote">"</div><p class="testimony-text">After 10 years of struggling with addiction, God broke every chain through the prayer and love of the JRM community. I am free.</p><div class="testimony-author">Michael A.</div><div class="testimony-location">JRM Manila</div></div>
+      <div class="testimony-card"><div class="testimony-quote">"</div><p class="testimony-text">We were told we could never have children. After three years of praying with JRM's intercession team, God gave us twins. To God be the glory!</p><div class="testimony-author">Theresa & Roy B.</div><div class="testimony-location">JRM Laguna</div></div>
+      <div class="testimony-card"><div class="testimony-quote">"</div><p class="testimony-text">I walked into JRM as a skeptic and walked out as a believer. One service, one message from Bishop Vincent — and my life was never the same.</p><div class="testimony-author">Nathan C.</div><div class="testimony-location">First-time visitor</div></div>
+      <div class="testimony-card"><div class="testimony-quote">"</div><p class="testimony-text">Watching JRM's live stream every Sunday from Dubai has kept my faith alive while I'm away from family. This church truly has no borders.</p><div class="testimony-author">Liza F.</div><div class="testimony-location">JRM Dubai</div></div>
+      <div class="testimony-card"><div class="testimony-quote">"</div><p class="testimony-text">DNG changed how I read my Bible and how I pray. Three years later, I'm now leading my own group of disciples. The program works.</p><div class="testimony-author">Carlo D.</div><div class="testimony-location">JRM Manila</div></div>
+      <div class="testimony-card"><div class="testimony-quote">"</div><p class="testimony-text">Our small church in La Union was struggling. After connecting with JRM and receiving their support, we grew from 15 to over 80 members in one year.</p><div class="testimony-author">Ptr. Noel M.</div><div class="testimony-location">JRM La Union</div></div>
+    </div>
+    <div style="text-align:center;margin-top:40px;"><button class="btn-outline">Load More Testimonies</button></div>
+  </div>
+</div>
+
+<!-- ═══ PAGE: CONTACT ══════════════════════════════════ -->
+<div class="page" id="page-contact">
+  <div class="page-hero"><div class="page-hero-bar"></div>
+    <div class="eyebrow">We'd Love to Meet You</div>
+    <h1>Contact & <em>Visit Us</em></h1>
+    <p>Come worship with us at our Malate campus, or reach out through any channel below.</p>
+  </div>
+  <div class="content-section dark">
+    <div class="contact-layout">
+      <div>
+        <span class="section-tag">Find Us</span>
+        <h2 class="section-title" style="color:#fff;font-size:30px;">Visit Our <em>Campus</em></h2>
+        <div class="contact-detail"><div class="contact-icon">📍</div><div class="contact-detail-text"><strong>Address</strong><p>811 J. Nakpil cor. P.H. Lim Sts.,<br>Malate, Manila 1004, Philippines</p></div></div>
+        <div class="contact-detail"><div class="contact-icon">📞</div><div class="contact-detail-text"><strong>Phone</strong><p>(02) 4003819 / 254-7569<br>P.O. Box 1167, Manila 1099</p></div></div>
+        <div class="contact-detail"><div class="contact-icon">📅</div><div class="contact-detail-text"><strong>Sunday Services</strong><p>8:00 AM · 10:30 AM · 1:00 PM</p></div></div>
+        <div class="contact-detail"><div class="contact-icon">📺</div><div class="contact-detail-text"><strong>Online</strong><p>YouTube & Facebook Live<br>Every Sunday at 8:00 AM</p></div></div>
+        <div class="contact-detail"><div class="contact-icon">🚨</div><div class="contact-detail-text"><strong>CESA Rescue Hotline</strong><p>811 · Community Emergency & Soul Care</p></div></div>
+        <div class="map-box"><span>📍</span><p>811 J. Nakpil cor. P.H. Lim Sts.<br>Malate, Manila 1004</p><a href="#">Open in Google Maps →</a></div>
+      </div>
+      <div>
+        <span class="section-tag">Get in Touch</span>
+        <h2 class="section-title" style="color:#fff;font-size:30px;">Send Us a <em>Message</em></h2>
+        <div class="form-group"><label class="form-label">Your Name</label><input type="text" class="form-input" placeholder="Full name"></div>
+        <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" placeholder="your@email.com"></div>
+        <div class="form-group"><label class="form-label">Contact Number</label><input type="text" class="form-input" placeholder="+63 ..."></div>
+        <div class="form-group"><label class="form-label">Subject</label><select class="form-select"><option>General Inquiry</option><option>Pastoral Services Request</option><option>Event Registration</option><option>Media / Press</option><option>Partner Church</option></select></div>
+        <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea" placeholder="How can we help you?"></textarea></div>
+        <button class="btn-primary" style="width:100%;justify-content:center;">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE: BLOG ═════════════════════════════════════ -->
+<div class="page" id="page-blog">
+  <div class="page-hero" style="background:var(--charcoal2);"><div class="page-hero-bar"></div>
+    <div class="eyebrow">Blog & Devotionals</div>
+    <h1>Words for the <em>Journey</em></h1>
+    <p>Pastoral reflections, devotionals, and teachings to strengthen your faith between Sundays.</p>
+  </div>
+  <div class="content-section dark">
+    <div class="blog-grid">
+      <div class="blog-card featured"><span class="blog-category">Devotional</span><div class="blog-title">"Learning to Be Still: A Reflection on Psalm 46:10"</div><p class="blog-excerpt">In the noise and rush of daily life, God's invitation to "be still" is both a command and a gift. Bishop Vincent reflects on what it means to truly rest in God's presence...</p><div class="blog-meta">Bishop Vincent Javier · February 20, 2026 · 5 min read</div></div>
+      <div class="blog-card"><span class="blog-category">Ministry</span><div class="blog-title">"Why DNG Changed My Life"</div><p class="blog-excerpt">A member shares how the DNG discipleship program transformed their walk with Jesus...</p><div class="blog-meta">JRM Member Story · Feb 14, 2026</div></div>
+      <div class="blog-card"><span class="blog-category">Missions</span><div class="blog-title">"What We Saw in La Union"</div><p class="blog-excerpt">A field report from the JRM La Union outreach team — lives changed, a church planted...</p><div class="blog-meta">JRM Missions Team · Feb 8, 2026</div></div>
+      <div class="blog-card"><span class="blog-category">Pastoral</span><div class="blog-title">"First Fruits: What Does God Really Ask of Us?"</div><p class="blog-excerpt">A theological reflection on giving, sacrifice, and what it means to put God first in every area of life...</p><div class="blog-meta">Bishop Vincent Javier · Feb 2, 2026</div></div>
+      <div class="blog-card"><span class="blog-category">Devotional</span><div class="blog-title">"When Prayer Feels Like Silence"</div><p class="blog-excerpt">Honest reflections on seasons where God seems quiet — and why those moments matter most...</p><div class="blog-meta">Pastoral Team · Jan 28, 2026</div></div>
+      <div class="blog-card"><span class="blog-category">Community</span><div class="blog-title">"Serving Together: JRM's CESA Outreach"</div><p class="blog-excerpt">How JRM's CESA arm is responding to community needs across Malate and beyond...</p><div class="blog-meta">CESA Team · Jan 20, 2026</div></div>
+    </div>
+    <div style="text-align:center;margin-top:32px;"><button class="btn-outline">Load More Articles</button></div>
+  </div>
+</div>
+
+<!-- ═══ PAGE: RESOURCES ════════════════════════════════ -->
+<div class="page" id="page-resources">
+  <div class="page-hero"><div class="page-hero-bar"></div>
+    <div class="eyebrow">Downloads & Materials</div>
+    <h1>JRM <em>Resources</em></h1>
+    <p>Study guides, devotionals, ministry forms, and materials — all available for free download.</p>
+  </div>
+  <div class="content-section dark">
+    <div class="resources-grid">
+      <div class="resource-card"><div class="resource-icon">📖</div><div class="resource-type">PDF · Doctrine</div><div class="resource-title">JRM Statement of Faith</div><div class="resource-desc">The official doctrinal statement of Jesus Reigns Ministries — approved October 2024.</div><button class="resource-download">⬇ Download PDF</button></div>
+      <div class="resource-card"><div class="resource-icon">📋</div><div class="resource-type">PDF · Discipleship</div><div class="resource-title">DNG Stage 1 Study Guide</div><div class="resource-desc">The complete study guide for DNG Stage 1 — Believer. For personal or group use.</div><button class="resource-download">⬇ Download PDF</button></div>
+      <div class="resource-card"><div class="resource-icon">🙏</div><div class="resource-type">PDF · Prayer</div><div class="resource-title">30-Day Prayer Guide</div><div class="resource-desc">A structured daily prayer guide for JRM members — covering personal, family, church, and national prayers.</div><button class="resource-download">⬇ Download PDF</button></div>
+      <div class="resource-card"><div class="resource-icon">💍</div><div class="resource-type">Form · Pastoral Service</div><div class="resource-title">Wedding Application Form</div><div class="resource-desc">Official JRM wedding ceremony application. Submit at least 3 months before your desired wedding date.</div><button class="resource-download">⬇ Download Form</button></div>
+      <div class="resource-card"><div class="resource-icon">🍼</div><div class="resource-type">Form · Pastoral Service</div><div class="resource-title">Child Dedication Form</div><div class="resource-desc">Application form for child dedication ceremonies at JRM Manila.</div><button class="resource-download">⬇ Download Form</button></div>
+      <div class="resource-card"><div class="resource-icon">💧</div><div class="resource-type">Form · Pastoral Service</div><div class="resource-title">Water Baptism Registration</div><div class="resource-desc">Sign-up form for the next JRM water baptism schedule.</div><button class="resource-download">⬇ Download Form</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE: MEMBERS PORTAL ══════════════════════════ -->
+<div class="page" id="page-members">
+  <div class="content-section dark" style="min-height:80vh;display:flex;align-items:center;justify-content:center;">
+    <div class="portal-gate">
+      <div class="portal-icon">🔐</div>
+      <h2>Members Portal</h2>
+      <p>This area is for JRM members and ministry leaders. Sign in with your JRM account to access cell group materials, ministry schedules, pastoral forms, and internal documents.</p>
+      <div class="portal-form">
+        <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-input" placeholder="your@email.com"></div>
+        <div class="form-group"><label class="form-label">Password</label><input type="password" class="form-input" placeholder="••••••••"></div>
+        <button class="btn-primary" style="width:100%;justify-content:center;margin-bottom:14px;">Sign In →</button>
+        <p style="font-size:12px;color:rgba(255,255,255,0.3);text-align:center;">Don't have an account? <span style="color:var(--amber);cursor:pointer;">Request access from your pastor.</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE: CHURCH DIRECTORY ════════════════════════ -->
+<div class="page" id="page-directory">
+  <div class="page-hero"><div class="page-hero-bar"></div>
+    <div class="eyebrow">Our Network</div>
+    <h1>JRM Church <em>Directory</em></h1>
+    <p>85 provincial churches and 55 ongoing missions across the Philippines — find a JRM church near you.</p>
+  </div>
+  <div class="content-section dark">
+    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:24px;">
+      <input type="text" class="form-input" style="flex:1;min-width:200px;" placeholder="🔍 Search by city, province, or pastor name...">
+      <select class="form-select" style="width:180px;"><option>All Regions</option><option>NCR / Metro Manila</option><option>Luzon</option><option>Visayas</option><option>Mindanao</option></select>
+      <select class="form-select" style="width:160px;"><option>All Types</option><option>Class A (Mother Church)</option><option>Class B (Self-liquidating)</option><option>Class C (Newly Declared)</option><option>Ongoing Mission</option></select>
+    </div>
+    <div class="region-tabs">
+      <button class="region-tab active">All (85 + 55)</button>
+      <button class="region-tab">NCR</button><button class="region-tab">Luzon</button>
+      <button class="region-tab">Visayas</button><button class="region-tab">Mindanao</button>
+    </div>
+    <div class="churches-grid">
+      <div class="church-card"><div class="church-name">JRM Manila (Main Campus)</div><div class="church-pastor">Bishop Vincent Javier</div><div class="church-location">📍 811 J. Nakpil St., Malate, Manila</div><div class="church-type">Mother Church</div></div>
+      <div class="church-card"><div class="church-name">JRM Laguna</div><div class="church-pastor">Ptr. [Name]</div><div class="church-location">📍 Santa Rosa, Laguna</div><div class="church-type">Class A</div></div>
+      <div class="church-card"><div class="church-name">JRM La Union</div><div class="church-pastor">Ptr. [Name]</div><div class="church-location">📍 San Fernando, La Union</div><div class="church-type">Class B</div></div>
+      <div class="church-card"><div class="church-name">JRM Cebu</div><div class="church-pastor">Ptr. [Name]</div><div class="church-location">📍 Cebu City, Cebu</div><div class="church-type">Class A</div></div>
+      <div class="church-card"><div class="church-name">JRM Davao</div><div class="church-pastor">Ptr. [Name]</div><div class="church-location">📍 Davao City, Davao del Sur</div><div class="church-type">Class B</div></div>
+      <div class="church-card"><div class="church-name">JRM Baguio</div><div class="church-pastor">Ptr. [Name]</div><div class="church-location">📍 Baguio City, Benguet</div><div class="church-type">Class C</div></div>
+      <div class="church-card" style="background:rgba(212,160,32,0.06);border:1px dashed rgba(212,160,32,0.2);display:flex;align-items:center;justify-content:center;min-height:100px;"><div style="text-align:center;color:rgba(255,255,255,0.2);font-size:13px;">+ 79 more provincial churches<br>+ 55 ongoing missions</div></div>
+      <div class="church-card" style="background:rgba(0,0,0,0.2);"><div style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(212,160,32,0.5);margin-bottom:8px;">Ongoing Mission</div><div class="church-name">JRM [Province] Mission</div><div class="church-pastor">Ptr. [Name]</div><div class="church-location">📍 Location, Province</div><div class="church-type" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.3);">Bible Study / Sunday Service</div></div>
+      <div class="church-card" style="background:rgba(0,0,0,0.2);"><div style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(212,160,32,0.5);margin-bottom:8px;">Ongoing Mission</div><div class="church-name">JRM [Province] Mission</div><div class="church-pastor">Ptr. [Name]</div><div class="church-location">📍 Location, Province</div><div class="church-type" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.3);">Bible Study / Sunday Service</div></div>
+    </div>
+    <div style="text-align:center;margin-top:32px;padding:20px;background:rgba(212,160,32,0.05);border:1px solid rgba(212,160,32,0.12);border-radius:3px;"><p style="font-size:13px;color:rgba(255,255,255,0.35);">Full directory with 85 churches + 55 missions will be populated by the Manila content team during Phase 2.</p></div>
+  </div>
+</div>
+
+<!-- ═══ PAGE: PASTORAL SERVICES ═══════════════════════ -->
+<div class="page" id="page-pastoral">
+  <div class="page-hero" style="background:var(--offwhite);"><div class="page-hero-bar"></div>
+    <div class="eyebrow" style="color:var(--amber);">How We Serve You</div>
+    <h1 style="color:var(--charcoal);">Pastoral <em>Services</em></h1>
+    <p style="color:#666;">JRM pastors are available for life's most important milestones. Request a pastoral service below.</p>
+  </div>
+  <div class="content-section white">
+    <div class="pastoral-grid-page">
+      <div class="pastoral-page-card"><span class="pastoral-emoji">💍</span><h3 class="pastoral-title">Weddings</h3><p class="pastoral-desc">JRM pastors will be honored to officiate your wedding ceremony. We provide pastoral guidance, pre-marital counseling, and full ceremony coordination.</p><button class="pastoral-link" onclick="showPage('resources')">Download Application Form →</button></div>
+      <div class="pastoral-page-card"><span class="pastoral-emoji">🍼</span><h3 class="pastoral-title">Child Dedication</h3><p class="pastoral-desc">Dedicate your child to the Lord in a formal ceremony before the JRM congregation. A sacred milestone for your growing family.</p><button class="pastoral-link" onclick="showPage('resources')">Download Application Form →</button></div>
+      <div class="pastoral-page-card"><span class="pastoral-emoji">🕊️</span><h3 class="pastoral-title">Funeral Services</h3><p class="pastoral-desc">JRM walks with you through grief. Our pastors provide compassionate funeral officiation and bereavement support for your family.</p><button class="pastoral-link" onclick="showPage('contact')">Contact a Pastor →</button></div>
+      <div class="pastoral-page-card"><span class="pastoral-emoji">💧</span><h3 class="pastoral-title">Water Baptism</h3><p class="pastoral-desc">Take your public stand of faith through water baptism. JRM schedules regular baptism Sundays throughout the year.</p><button class="pastoral-link" onclick="showPage('resources')">Download Registration →</button></div>
+      <div class="pastoral-page-card"><span class="pastoral-emoji">🏠</span><h3 class="pastoral-title">House / Car / Business Blessing</h3><p class="pastoral-desc">Invite God's presence into your new home, vehicle, or business. Our pastors are available for blessing services upon request.</p><button class="pastoral-link" onclick="showPage('contact')">Request a Blessing →</button></div>
+      <div class="pastoral-page-card"><span class="pastoral-emoji">🏥</span><h3 class="pastoral-title">Hospital & Soul Care</h3><p class="pastoral-desc">Our pastoral care team visits the sick and provides prayer, counseling, and soul care for those in need. No one goes through difficulty alone in JRM.</p><button class="pastoral-link" onclick="showPage('contact')">Request a Visit →</button></div>
+    </div>
+    <div style="text-align:center;margin-top:48px;padding:32px;background:var(--charcoal);border-radius:4px;">
+      <div style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:8px;">For all pastoral service inquiries, contact us at:</div>
+      <div style="font-size:18px;font-weight:700;color:var(--amber);">(02) 4003819 / 254-7569</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.25);margin-top:6px;">811 J. Nakpil cor. P.H. Lim Sts., Malate, Manila 1004</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE: INTERNATIONAL ════════════════════════════ -->
+<div class="page" id="page-international">
+  <div class="page-hero"><div class="page-hero-bar"></div>
+    <div class="eyebrow">Global Reach</div>
+    <h1>JRM Around the <em>World</em></h1>
+    <p>From Manila to the Middle East, Europe, Asia, Australia, and America — Jesus Reigns is one global family.</p>
+  </div>
+  <div class="content-section dark">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:2px;" class="intl-grid">
+      <div class="intl-card" style="border-top-color:#D4A020;"><div class="intl-flag">🇵🇭</div><div class="intl-name">JRM Philippines</div><div class="intl-location">Manila + 85 Provincial Churches</div><div class="intl-desc">The heart and hub of JRM — 85 churches, 55 missions, and the main campus in Malate, Manila.</div><div class="intl-link" onclick="showPage('directory')">View Directory →</div></div>
+      <div class="intl-card" style="border-top-color:#4A90D9;"><div class="intl-flag">🇦🇪</div><div class="intl-name">JRM Dubai</div><div class="intl-location">Dubai, United Arab Emirates</div><div class="intl-desc">Reaching the Filipino community in the UAE with regular services, discipleship, and pastoral care.</div><div class="intl-link">Visit JRM Dubai →</div></div>
+      <div class="intl-card" style="border-top-color:#C0392B;"><div class="intl-flag">🇭🇰</div><div class="intl-name">JRM Hong Kong</div><div class="intl-location">Hong Kong SAR</div><div class="intl-desc">Serving the Filipino diaspora in Hong Kong with weekly services and active community outreach.</div><div class="intl-link">Visit JRM Hong Kong →</div></div>
+      <div class="intl-card" style="border-top-color:#27AE60;"><div class="intl-flag">🇬🇧</div><div class="intl-name">JRM United Kingdom</div><div class="intl-location">United Kingdom</div><div class="intl-desc">A growing JRM community in the UK — gathering Filipino believers and welcoming all who seek God.</div><div class="intl-link">Visit JRM UK →</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;" class="intl-grid">
+      <div class="intl-card" style="border-top-color:#8E44AD;"><div class="intl-flag">🇦🇺</div><div class="intl-name">JRM Australia</div><div class="intl-location">Australia</div><div class="intl-desc">JRM's Australian community — connecting Filipino believers and raising disciples across the continent.</div><div class="intl-link">Visit JRM Australia →</div></div>
+      <div class="intl-card" style="border-top-color:#E67E22;"><div class="intl-flag">🇺🇸</div><div class="intl-name">JRM America</div><div class="intl-location">United States</div><div class="intl-desc">Serving the Filipino-American community with the same JRM spirit of worship, discipleship, and mission.</div><div class="intl-link">Visit JRM America →</div></div>
+      <div class="intl-card" style="border-top-color:#16A085;"><div class="intl-flag">🌍</div><div class="intl-name">More Regions Coming</div><div class="intl-location">Europe · Middle East · Asia</div><div class="intl-desc">JRM continues to expand globally. If you're a JRM group in an unlisted location, reach out to us.</div><div class="intl-link" onclick="showPage('contact')">Contact Us →</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE: ACADEMY & COLLEGE ═══════════════════════ -->
+<div class="page" id="page-academy">
+  <div class="page-hero" style="background:var(--charcoal2);"><div class="page-hero-bar"></div>
+    <div class="eyebrow">Education</div>
+    <h1>JRM <em>Education</em> Institutions</h1>
+    <p>Raising the next generation through faith-based, quality Christian education.</p>
+  </div>
+  <div class="content-section dark">
+    <div class="school-grid">
+      <div class="school-card academy">
+        <span class="section-tag">Primary & Secondary</span>
+        <h2>Jesus Reigns<br>Christian Academy</h2>
+        <p>JRCA provides faith-based primary and secondary education under the leadership of Dr. Ligaya Javier. Academic excellence rooted in Christian values and the Word of God.</p>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px;">
+          <div style="font-size:13px;color:rgba(255,255,255,0.35);">📍 Affiliated with JRM Manila</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.35);">👩‍💼 Director: Dr. Ligaya Javier</div>
+        </div>
+        <button class="btn-outline" onclick="showPage('contact')" style="margin-top:16px;">Inquire About JRCA →</button>
+      </div>
+      <div class="school-card college">
+        <span class="section-tag">Tertiary Education</span>
+        <h2>Jesus Reigns<br>Christian College</h2>
+        <p>JRCC offers tertiary-level education with a commitment to developing godly graduates who will serve the Lord in every sphere of society — business, government, arts, and ministry.</p>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px;">
+          <div style="font-size:13px;color:rgba(255,255,255,0.35);">📍 Affiliated with JRM Manila</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.35);">👩‍💼 Director: Dr. Ligaya Javier</div>
+        </div>
+        <button class="btn-outline" onclick="showPage('contact')" style="margin-top:16px;">Inquire About JRCC →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ REGISTRATION MODAL ════════════════════════════ -->
+<div class="modal-overlay" id="reg-modal">
+  <div class="modal-box-wrap">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeRegistration()">×</button>
+      <h2>Event Registration</h2>
+      <p class="modal-sub" id="modal-event-name">Loading event...</p>
+      <div class="form-group"><label class="form-label">Full Name</label><input type="text" class="form-input" placeholder="Your full name"></div>
+      <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-input" placeholder="your@email.com"></div>
+      <div class="form-group"><label class="form-label">Mobile Number</label><input type="text" class="form-input" placeholder="+63 ..."></div>
+      <div class="form-group"><label class="form-label">Number of Attendees</label><select class="form-select"><option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option></select></div>
+      <div class="form-group"><label class="form-label">JRM Church / Location</label><input type="text" class="form-input" placeholder="e.g. JRM Manila, JRM Dubai..."></div>
+      <div class="form-group"><label class="form-label">Special Notes (optional)</label><textarea class="form-textarea" style="min-height:80px;" placeholder="Any notes for the organizing team..."></textarea></div>
+      <button class="btn-primary" style="width:100%;justify-content:center;" onclick="submitRegistration()">✓ Confirm Registration</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TESTIMONY FORM MODAL ══════════════════════════ -->
+<div class="modal-overlay" id="testimony-modal">
+  <div class="modal-box-wrap">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeTestimonyForm()">×</button>
+      <h2>Share Your Testimony</h2>
+      <p class="modal-sub">Tell us what God has done in your life. Your story could inspire someone else.</p>
+      <div class="form-group"><label class="form-label">Your Name</label><input type="text" class="form-input" placeholder="Full name or Anonymous"></div>
+      <div class="form-group"><label class="form-label">JRM Location</label><input type="text" class="form-input" placeholder="e.g. JRM Manila, JRM Dubai, Online..."></div>
+      <div class="form-group"><label class="form-label">Your Testimony</label><textarea class="form-textarea" style="min-height:160px;" placeholder="Share what God has done in your life..."></textarea></div>
+      <div class="form-group"><label class="form-label">Permission</label><select class="form-select"><option>Share publicly on the Testimony Wall</option><option>Share with permission from our team first</option></select></div>
+      <button class="btn-primary" style="width:100%;justify-content:center;" onclick="closeTestimonyForm()">Submit My Testimony ✨</button>
+    </div>
+  </div>
+</div>
+
+<!-- Prototype badge -->
+<div class="prototype-badge">🔧 Prototype v2 · jesusreigns.com</div>
+
+<script>
+// ═══ ROUTER ═══════════════════════════════════════════
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + id);
+  if (target) {
+    target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+  // Update active nav
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active-link'));
+  closeMobile();
+}
+
+// ═══ MOBILE MENU ══════════════════════════════════════
+function toggleMobile() {
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+function closeMobile() {
+  document.getElementById('mobile-menu').classList.remove('open');
+}
+
+// ═══ EVENT FILTERS ════════════════════════════════════
+function filterEvents(btn, type) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.event-card').forEach(card => {
+    if (type === 'all' || card.dataset.type === type) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// ═══ MODALS ═══════════════════════════════════════════
+function openRegistration(eventName) {
+  document.getElementById('modal-event-name').textContent = 'Registering for: ' + eventName;
+  document.getElementById('reg-modal').classList.add('open');
+}
+function closeRegistration() {
+  document.getElementById('reg-modal').classList.remove('open');
+}
+function submitRegistration() {
+  alert('Registration submitted! A confirmation will be sent to your email. God bless you!');
+  closeRegistration();
+}
+function openTestimonyForm() {
+  document.getElementById('testimony-modal').classList.add('open');
+}
+function closeTestimonyForm() {
+  document.getElementById('testimony-modal').classList.remove('open');
+}
+
+// Close modals on overlay click
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) overlay.classList.remove('open');
+  });
+});
+
+// ═══ GIVE PAGE INTERACTIONS ════════════════════════════
+document.querySelectorAll('.amount-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('selected'));
+    this.classList.add('selected');
+    const amt = this.textContent;
+    const submitBtn = document.querySelector('#page-give .btn-primary');
+    if (submitBtn && !amt.includes('Custom')) submitBtn.textContent = '💛 Give ' + amt + ' Now';
+  });
+});
+document.querySelectorAll('.freq-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.freq-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// ═══ NAV SCROLL EFFECT ════════════════════════════════
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  nav.style.background = window.scrollY > 30 ? 'rgba(10,10,10,0.99)' : 'rgba(14,14,14,0.97)';
+});
+</script>
+</body>
+</html>
