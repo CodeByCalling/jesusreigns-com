@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 /* ── Dropdown data ─────────────────────────────── */
 const connectItems = [
@@ -119,9 +120,13 @@ export default function Nav() {
       <nav className="fixed top-0 left-0 right-0 z-[200] h-nav flex items-center justify-between px-10 bg-[rgba(14,14,14,0.97)] backdrop-blur-[16px] border-b border-amber/[0.18] max-[900px]:px-5">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-[11px] no-underline">
-          <div className="w-10 h-10 bg-amber rounded-[3px] flex items-center justify-center text-lg flex-shrink-0">
-            ✝
-          </div>
+          <Image
+            src="/images/logo/logo_cross_clean.png"
+            alt="JRM Logo"
+            width={40}
+            height={40}
+            className="rounded-[3px] flex-shrink-0"
+          />
           <div>
             <strong className="block font-serif text-[15px] font-bold text-white leading-[1.1]">
               Jesus Reigns

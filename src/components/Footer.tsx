@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const footerColumns = [
   {
@@ -55,9 +56,13 @@ export default function Footer() {
         {/* Brand column */}
         <div>
           <div className="flex items-center gap-[11px] mb-3">
-            <div className="w-[38px] h-[38px] bg-amber rounded-[3px] flex items-center justify-center text-base">
-              ✝
-            </div>
+            <Image
+              src="/images/logo/logo_cross_clean.png"
+              alt="JRM Logo"
+              width={38}
+              height={38}
+              className="rounded-[3px]"
+            />
             <div>
               <strong className="block font-serif text-[15px] text-white">
                 Jesus Reigns Ministries
